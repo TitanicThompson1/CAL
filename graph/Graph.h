@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <unordered_set>
 #include <iostream>
+#include <cmath>
 #include "MutablePriorityQueue.h"
 
 using namespace std;
@@ -147,6 +148,9 @@ public:
     bool addBidirectionalEdge(const T &sourc, const T &dest, double w);
 	vector<Vertex<T>*> calculatePrim();
 	vector<Vertex<T>*> calculateKruskal();
+
+	//Done by us
+	int calculateWeight(Vertex<T> *src, Vertex<T> *dest);
 };
 
 
@@ -193,6 +197,7 @@ bool Graph<T>::addVertex(const T &in) {
 	return true;
 }
 
+//Added by us
 template <class T>
 bool Graph<T>::addVertex(const T &in, int x, int y) {
     if (findVertex(in) != nullptr)
@@ -212,6 +217,8 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 	auto v2 = findVertex(dest);
 	if (v1 == nullptr || v2 == nullptr)
 		return false;
+	if( w == -1)
+        w = calculateWeight(v1, v2);
 	v1->addEdge(v2, w);
 	return true;
 }
@@ -436,6 +443,10 @@ vector<Vertex<T>*> Graph<T>::calculateKruskal() {
 	return vertexSet;
 }
 
+template<class T>
+int Graph<T>::calculateWeight(Vertex<T> *src, Vertex<T> *dest) {
+    return sqrt(pow(dest->y - src->y, 2) + pow(dest->x - src->x, 2));
+}
 
 
 #endif /* GRAPH_H_ */

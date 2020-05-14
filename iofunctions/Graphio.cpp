@@ -12,7 +12,7 @@ Graph<int> readGraph(const string nodesFilename, const string edgesFilename) {
     ifstream Ninfile(nodesFilename);
 
     //Importing nodes
-    int nNodes; string node, node2, sId, sX, sY;
+    string node, node2, sId, sX, sY;
     int id, x, y;
     getline(Ninfile,node);
     while(getline(Ninfile,node)){
@@ -31,5 +31,24 @@ Graph<int> readGraph(const string nodesFilename, const string edgesFilename) {
         graph.addVertex(id, x, y);
     }
 
+    ifstream Einfile(edgesFilename);
+    //Importing edges
+    string sSrc, sDest;
+    int src, dest;
+
+    getline(Einfile,node);
+    while(getline(Einfile,node)){
+        node2 = node.substr(1, node.size() - 2);
+
+        istringstream part(node2);
+
+        getline(part,sSrc,',');
+        src = stoi(sSrc);
+
+        getline(part,sDest,',');
+        dest = stoi(sDest);
+
+        graph.addEdge(src, dest, -1);
+    }
     return graph;
 }
