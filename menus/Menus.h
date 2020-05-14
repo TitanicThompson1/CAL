@@ -5,8 +5,8 @@
 #ifndef CODE_MENUS_H
 #define CODE_MENUS_H
 
-#include "../graph/Graph.h"
-#include "../lib/graphviewer.h"
+#include "Graph.h"
+#include "graphviewer.h"
 
 #include <cstdio>
 #include <fstream>

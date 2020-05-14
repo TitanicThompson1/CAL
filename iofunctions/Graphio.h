@@ -5,7 +5,7 @@
 #ifndef CODE_GRAPHIO_H
 #define CODE_GRAPHIO_H
 
-#include "../graph/Graph.h"
+#include "Graph.h"
 #include <fstream>
 #include <sstream>
 #include <string>
