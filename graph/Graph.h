@@ -9,6 +9,7 @@
 #include <limits>
 #include <algorithm>
 #include <unordered_set>
+#include <iostream>
 #include "MutablePriorityQueue.h"
 
 using namespace std;
@@ -28,6 +29,7 @@ class Vertex {
 	bool visited;          // auxiliary field
 	double dist = 0;
 	Vertex<T> *path = nullptr;
+	int x,y;
 	int queueIndex = 0; 		// required by MutablePriorityQueue
 
 	void addEdge(Vertex<T> *dest, double w);
@@ -35,6 +37,7 @@ class Vertex {
 
 public:
 	Vertex(T in);
+	Vertex(T in, int x, int y);
 	bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
 	T getInfo() const;
 	double getDist() const;
@@ -46,6 +49,9 @@ public:
 
 template <class T>
 Vertex<T>::Vertex(T in): info(in) {}
+
+template <class T>
+Vertex<T>::Vertex(T in, int x, int y): info(in), x(x), y(y) {}
 
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),
@@ -121,6 +127,7 @@ class Graph {
 public:
 	Vertex<T> *findVertex(const T &in) const;
 	bool addVertex(const T &in);
+	bool addVertex(const T &in, int x, int y);
 	bool addEdge(const T &sourc, const T &dest, double w);
 	int getNumVertex() const;
 	vector<Vertex<T> *> getVertexSet() const;
@@ -184,6 +191,14 @@ bool Graph<T>::addVertex(const T &in) {
 		return false;
 	vertexSet.push_back(new Vertex<T>(in));
 	return true;
+}
+
+template <class T>
+bool Graph<T>::addVertex(const T &in, int x, int y) {
+    if (findVertex(in) != nullptr)
+        return false;
+    vertexSet.push_back(new Vertex<T>(in,x,y));
+    return true;
 }
 
 /*
@@ -418,7 +433,6 @@ vector<Vertex<T>* > Graph<T>::calculatePrim() {
 template <class T>
 vector<Vertex<T>*> Graph<T>::calculateKruskal() {
 	// TODO
-	MutablePriorityQueue<Vertex<T>> Q =
 	return vertexSet;
 }
 

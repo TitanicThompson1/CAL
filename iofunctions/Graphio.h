@@ -7,9 +7,12 @@
 
 #include "../graph/Graph.h"
 #include <fstream>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
-Graph<int> readGraph(const string filename);
+Graph<int> readGraph(const string nodesFilename, const string edgesFilename);
+
 
 #endif //CODE_GRAPHIO_H
