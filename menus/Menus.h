@@ -6,15 +6,23 @@
 #define CODE_MENUS_H
 
 #include "../graph/Graph.h"
+#include "../lib/graphviewer.h"
 
-int InitialMenu(Graph<int> *graph);
+#include <cstdio>
+#include <fstream>
+#include <iostream>
+#include <sstream>
 
-int VisualizeGraphMenu(Graph<int> *graph);
+int InitialMenu(Graph<int> &graph);
 
-int FirstFaseMenu(Graph<int> *graph);
+int VisualizeGraphMenu(Graph<int> &graph);
 
-int SecondFaseMenu(Graph<int> *graph);
+int FirstFaseMenu(Graph<int> &graph);
 
-int ThirdFaseMenu(Graph<int> *graph);
+int SecondFaseMenu(Graph<int> &graph);
+
+int ThirdFaseMenu(Graph<int> &graph);
+
+void newWindow();
 
 #endif //CODE_MENUS_H

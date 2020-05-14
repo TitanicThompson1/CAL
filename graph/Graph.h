@@ -32,8 +32,17 @@ class Vertex {
 	Vertex<T> *path = nullptr;
 	int x,y;
 	int queueIndex = 0; 		// required by MutablePriorityQueue
+public:
+    const vector<Edge<T>> &getAdj() const;
 
-	void addEdge(Vertex<T> *dest, double w);
+private:
+
+    void addEdge(Vertex<T> *dest, double w);
+
+public:
+    int getX() const;
+
+    int getY() const;
 
 
 public:
@@ -83,6 +92,21 @@ Vertex<T> *Vertex<T>::getPath() const {
 	return this->path;
 }
 
+template<class T>
+int Vertex<T>::getX() const {
+    return x;
+}
+
+template<class T>
+int Vertex<T>::getY() const {
+    return y;
+}
+
+template<class T>
+const vector<Edge<T>> &Vertex<T>::getAdj() const {
+    return adj;
+}
+
 /********************** Edge  ****************************/
 
 template <class T>
@@ -92,6 +116,10 @@ class Edge {
 	double weight;         // edge weight
 
 	bool selected; // Fp07
+public:
+    Vertex<T> *getOrig() const;
+
+    Vertex<T> *getDest() const;
 
 public:
 	Edge(Vertex<T> *o, Vertex<T> *d, double w);
@@ -108,6 +136,16 @@ Edge<T>::Edge(Vertex<T> *o, Vertex<T> *d, double w): orig(o), dest(d), weight(w)
 template <class T>
 double Edge<T>::getWeight() const {
 	return weight;
+}
+
+template<class T>
+Vertex<T> *Edge<T>::getOrig() const {
+    return orig;
+}
+
+template<class T>
+Vertex<T> *Edge<T>::getDest() const {
+    return dest;
 }
 
 

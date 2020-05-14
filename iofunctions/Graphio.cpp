@@ -5,9 +5,22 @@
 #include "Graphio.h"
 
 
-Graph<int> readGraph(const string nodesFilename, const string edgesFilename) {
+
+
+
+Graph<int> readGraph(const string &nodesFilename, const string &edgesFilename) {
 
     Graph<int> graph;
+
+    getNodesFromFile(nodesFilename, graph);
+
+    getEdgesFromFile(edgesFilename, graph);
+
+    return graph;
+
+}
+
+void getNodesFromFile(const string &nodesFilename, Graph<int> &graph) {
 
     ifstream Ninfile(nodesFilename);
 
@@ -30,10 +43,12 @@ Graph<int> readGraph(const string nodesFilename, const string edgesFilename) {
 
         graph.addVertex(id, x, y);
     }
+}
 
+void getEdgesFromFile(const string &edgesFilename, Graph<int> &graph) {
     ifstream Einfile(edgesFilename);
     //Importing edges
-    string sSrc, sDest;
+    string sSrc, sDest, node, node2;
     int src, dest;
 
     getline(Einfile,node);
@@ -50,5 +65,4 @@ Graph<int> readGraph(const string nodesFilename, const string edgesFilename) {
 
         graph.addEdge(src, dest, -1);
     }
-    return graph;
 }
