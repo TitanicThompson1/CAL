@@ -11,6 +11,7 @@
 #include <unordered_set>
 #include <iostream>
 #include <cmath>
+#include <fstream>
 #include "MutablePriorityQueue.h"
 
 using namespace std;
@@ -30,8 +31,10 @@ class Vertex {
 	bool visited;          // auxiliary field
 	double dist = 0;
 	Vertex<T> *path = nullptr;
-	int x,y;
+	int x, y;
 	int queueIndex = 0; 		// required by MutablePriorityQueue
+	int heuristic = 0;          //Used in A* algorithm
+    double gValue = 0;
 public:
     const vector<Edge<T>> &getAdj() const;
 
@@ -189,6 +192,11 @@ public:
 
 	//Done by us
 	int calculateWeight(Vertex<T> *src, Vertex<T> *dest);
+    void calculateHeuristics(T src, T dest);
+	void aStarAlgorithm(T src, T dest);
+	int euclidianDistance(Vertex<T> *src, Vertex<T> *dest);
+	void exportResultsToFile(const string &filename, T src, T dest);
+
 };
 
 
@@ -271,12 +279,16 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
  */
 template<class T>
 Vertex<T> * Graph<T>::initSingleSource(const T &origin) {
-	for(auto v : vertexSet) {
+	for(Vertex<T> * v : vertexSet) {
 		v->dist = INF;
+		v->gValue = INF;
+		v->heuristic = 0;
+		v->visited = false;
 		v->path = nullptr;
 	}
 	auto s = findVertex(origin);
 	s->dist = 0;
+	s->gValue = 0;
 	return s;
 }
 
@@ -319,7 +331,7 @@ template<class T>
 vector<T> Graph<T>::getPath(const T &origin, const T &dest) const{
 	vector<T> res;
 	auto v = findVertex(dest);
-	if (v == nullptr || v->dist == INF) // missing or disconnected
+	if (v == nullptr) // missing or disconnected
 		return res;
 	for ( ; v != nullptr; v = v->path)
 		res.push_back(v->info);
@@ -483,7 +495,68 @@ vector<Vertex<T>*> Graph<T>::calculateKruskal() {
 
 template<class T>
 int Graph<T>::calculateWeight(Vertex<T> *src, Vertex<T> *dest) {
+    return euclidianDistance(src,dest);
+}
+
+
+
+template<class T>
+void Graph<T>::calculateHeuristics(T src, T dest) {
+    Vertex<T> *VDest = findVertex(dest);
+    for (auto v : vertexSet)
+        v->heuristic = euclidianDistance(VDest, VDest);
+
+}
+
+template<class T>
+void Graph<T>::aStarAlgorithm(T src, T dest) {
+    Vertex<T> * VSrc = initSingleSource(src);
+    calculateHeuristics(src, dest);
+
+    MutablePriorityQueue<Vertex<T>> q;
+    q.insert(VSrc);
+
+    while( !q.empty() ) {
+        auto v = q.extractMin();
+
+        if(v->info == dest) break;
+
+        for(Edge<T> e : v->adj) {
+            Vertex<T> * current = e.getDest();
+            double newGValue = v->gValue + e.getWeight();
+
+            if (newGValue < current->gValue) {
+                current->path = v;
+                current->gValue = newGValue;
+                if (current->dist == INF){
+                    q.insert(current);
+                }
+                else{
+                    q.decreaseKey(current);
+                }
+                current->dist = current->gValue + current->heuristic;
+            }
+        }
+
+    }
+}
+
+template<class T>
+int Graph<T>::euclidianDistance(Vertex<T> *src, Vertex<T> *dest) {
     return sqrt(pow(dest->y - src->y, 2) + pow(dest->x - src->x, 2));
+}
+
+template<class T>
+void Graph<T>::exportResultsToFile(const string &filename, T src, T dest) {
+    ofstream outfile(filename);
+
+    vector<T> result = getPath(src, dest);
+
+    for (auto v : result){
+        outfile << v << endl;
+    }
+
+    outfile.close();
 }
 
 

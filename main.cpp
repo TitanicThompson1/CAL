@@ -4,11 +4,15 @@
 #include "iofunctions/Graphio.h"
 #include "Graph.h"
 #include "Menus.h"
-
+#include "aStar.h"
 
 int main(){
 
     Graph<int> graph = readGraph("maps/GridGraphs/4x4/nodes.txt", "maps/GridGraphs/4x4/edges.txt");
+
+    aStarAlgorithm(graph,"deliveries/exemplo1.fas1", "deliveries/res.fas1");
+
+    return 0;
 
     int currentOption = 0;
 
