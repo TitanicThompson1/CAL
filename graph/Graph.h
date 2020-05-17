@@ -548,14 +548,15 @@ int Graph<T>::euclidianDistance(Vertex<T> *src, Vertex<T> *dest) {
 
 template<class T>
 void Graph<T>::exportResultsToFile(const string &filename, T src, T dest) {
-    ofstream outfile(filename);
+    ofstream outfile;
+    outfile.open(filename, ios::app);
 
     vector<T> result = getPath(src, dest);
 
     for (auto v : result){
         outfile << v << endl;
     }
-
+    outfile << "------------------------------" << endl;
     outfile.close();
 }
 

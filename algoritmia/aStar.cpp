@@ -13,6 +13,10 @@ void aStarAlgorithm(Graph<int> &graph, const string &filename, const string &res
 
     graph.exportResultsToFile(resultFilename, farmer, delivery);
 
+    graph.aStarAlgorithm(delivery,garage);
+
+    graph.exportResultsToFile(resultFilename, delivery, garage);
+
     infile.close();
 
 }
