@@ -6,10 +6,12 @@
 #define CODE_ASTAR_H
 
 #include <fstream>
+#include "FarmFresh2You.h"
 #include "Graph.h"
+#include "BasketsIO.h"
 
 
-void aStarAlgorithm(Graph<int> &graph, const string &filename, const string &resultFilename);
+void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &filename, const string &resultFilename);
 
 
 #endif //CODE_ASTAR_H

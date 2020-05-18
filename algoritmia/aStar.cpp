@@ -1,22 +1,15 @@
 #include "aStar.h"
 
-void aStarAlgorithm(Graph<int> &graph, const string &filename, const string &resultFilename) {
+void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &filename, const string &resultFilename) {
 
-    ifstream infile(filename);
+    vector<Basket> baskets = readBasketsFromFile(filename);
 
-    int farmer, delivery, garage;
-    infile >> farmer;
-    infile >> delivery;
-    infile >> garage;
+    graph.aStarAlgorithm(farm.getFarm(), baskets.at(0).getDest() );
 
-    graph.aStarAlgorithm(farmer, delivery);
+    graph.exportResultsToFile(resultFilename, farm.getFarm(), baskets.at(0).getDest());
 
-    graph.exportResultsToFile(resultFilename, farmer, delivery);
+    graph.aStarAlgorithm(baskets.at(0).getDest(),farm.getGarage());
 
-    graph.aStarAlgorithm(delivery,garage);
-
-    graph.exportResultsToFile(resultFilename, delivery, garage);
-
-    infile.close();
+    graph.exportResultsToFile(resultFilename, baskets.at(0).getDest(), farm.getGarage());
 
 }

@@ -1,0 +1,6 @@
+idClient
+dest
+weight
+volume
+invoice
+:::::

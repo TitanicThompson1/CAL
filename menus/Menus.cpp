@@ -3,6 +3,7 @@
 //
 
 #include "Menus.h"
+#include "aStar.h"
 
 int VisualizeGraphMenu(Graph<int> &graph) {
 
@@ -44,12 +45,32 @@ int InitialMenu(Graph<int> &graph) {
     newWindow();
 
     cout << "1 - See graph" << endl
+        << "2 - Calculate first fase" << endl
         << "-1 - Sair" << endl;
     cin >> nextMenu;
     return nextMenu;
 }
 
-int FirstFaseMenu(Graph<int> &graph) {
+int FirstFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
+    newWindow();
+
+    string filename, resFilename;
+    cout << "Introduza o nome do ficheiro que contem os cabazes" << endl;
+    cin >> filename;
+
+    cout << "Introduza o nome do ficheiro que irá conter os resultados" << endl;
+    cin >> resFilename;
+
+
+    aStarAlgorithm(farm, graph, filename, resFilename);
+    newWindow();
+
+    cout << "Algoritmo realizado com sucesso!" << endl
+        << "Introduza qualquer caracter para prosseguir" << endl;
+
+    cin >> filename;
+
+
     return 0;
 }
 

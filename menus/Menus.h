@@ -12,12 +12,13 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <FarmFresh2You.h>
 
 int InitialMenu(Graph<int> &graph);
 
 int VisualizeGraphMenu(Graph<int> &graph);
 
-int FirstFaseMenu(Graph<int> &graph);
+int FirstFaseMenu(const FarmFresh2You &farm, Graph<int> &graph);
 
 int SecondFaseMenu(Graph<int> &graph);
 
