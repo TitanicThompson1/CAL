@@ -4,7 +4,7 @@ void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &
 
     vector<Basket> baskets = readBasketsFromFile(filename);
 
-    graph.aStarAlgorithm(farm.getFarm(), baskets.at(0).getDest() );
+    graph.aStarAlgorithm(farm.getFarm(), baskets.at(0).getDest());
 
     graph.exportResultsToFile(resultFilename, farm.getFarm(), baskets.at(0).getDest());
 
