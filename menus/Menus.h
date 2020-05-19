@@ -7,12 +7,14 @@
 
 #include "Graph.h"
 #include "graphviewer.h"
+#include "aStar.h"
+#include "FarmFresh2You.h"
 
 #include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <FarmFresh2You.h>
+
 
 int InitialMenu(Graph<int> &graph);
 

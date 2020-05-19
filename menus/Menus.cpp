@@ -3,7 +3,6 @@
 //
 
 #include "Menus.h"
-#include "aStar.h"
 
 int VisualizeGraphMenu(Graph<int> &graph) {
 

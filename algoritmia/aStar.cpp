@@ -1,3 +1,4 @@
+#include <Basket.h>
 #include "aStar.h"
 
 void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &filename, const string &resultFilename) {

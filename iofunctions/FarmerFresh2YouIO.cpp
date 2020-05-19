@@ -3,9 +3,13 @@
 //
 
 #include "FarmerFresh2YouIO.h"
+#include "FileNotFound.h"
 
 FarmFresh2You readCompanyFromFile(const string &filename){
     ifstream infile(filename);
+
+    if(!infile.is_open())
+        throw FileNotFound(filename);
 
     int delivery, garage;
     string temp;
@@ -21,3 +25,4 @@ FarmFresh2You readCompanyFromFile(const string &filename){
     infile.close();
     return farmFresh2You;
 }
+
