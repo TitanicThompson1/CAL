@@ -11,6 +11,6 @@ void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &
 
     graph.aStarAlgorithm(baskets.at(0).getDest(),farm.getGarage());
 
-    graph.exportResultsToFile(resultFilename, baskets.at(0).getDest(), farm.getGarage());
+    //graph.exportResultsToFile(resultFilename, baskets.at(0).getDest(), farm.getGarage());
 
 }

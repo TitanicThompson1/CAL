@@ -9,12 +9,14 @@
 #include "FarmerFresh2YouIO.h"
 #include "FileNotFound.h"
 #include "FarmFresh2You.h"
+#include "complexityAnalysis.h"
 
 FarmFresh2You setUpRoutine();
 
 int main(){
 
-
+    testAStarPerfomance();
+    return 0;
 
     FarmFresh2You farm = setUpRoutine();
 

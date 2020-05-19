@@ -11,8 +11,9 @@ include_directories(graph)
 include_directories(iofunctions)
 include_directories(algoritmia)
 include_directories(FarmFresh2You)
+include_directories(utils)
 
 add_executable(code main.cpp graph/Graph.h graph/MutablePriorityQueue.h iofunctions/Graphio.cpp iofunctions/Graphio.h
         menus/Menus.cpp menus/Menus.h lib/connection.cpp lib/connection.h lib/graphviewer.cpp lib/graphviewer.h lib/edgetype.h
-        algoritmia/aStar.h algoritmia/aStar.cpp FarmFresh2You/Basket.cpp FarmFresh2You/Basket.h FarmFresh2You/Truck.cpp FarmFresh2You/Truck.h iofunctions/BasketsIO.cpp iofunctions/BasketsIO.h FarmFresh2You/FarmFresh2You.cpp FarmFresh2You/FarmFresh2You.h iofunctions/FarmerFresh2YouIO.cpp iofunctions/FarmerFresh2YouIO.h iofunctions/FileNotFound.h)
+        algoritmia/aStar.h algoritmia/aStar.cpp FarmFresh2You/Basket.cpp FarmFresh2You/Basket.h FarmFresh2You/Truck.cpp FarmFresh2You/Truck.h iofunctions/BasketsIO.cpp iofunctions/BasketsIO.h FarmFresh2You/FarmFresh2You.cpp FarmFresh2You/FarmFresh2You.h iofunctions/FarmerFresh2YouIO.cpp iofunctions/FarmerFresh2YouIO.h iofunctions/FileNotFound.h utils/complexityAnalysis.cpp utils/complexityAnalysis.h)
 
