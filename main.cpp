@@ -1,14 +1,22 @@
 //
 // Created by Ricardo Nunes on 13/05/2020.
 //
-#include "iofunctions/Graphio.h"
+#include <vector>
+
+#include "Graphio.h"
 #include "Graph.h"
 #include "Menus.h"
+#include "FarmerFresh2YouIO.h"
+#include "FileNotFound.h"
+#include "FarmFresh2You.h"
 
+FarmFresh2You setUpRoutine();
 
 int main(){
 
-    Graph<int> graph = readGraph("maps/GridGraphs/4x4/nodes.txt", "maps/GridGraphs/4x4/edges.txt");
+    FarmFresh2You farm = setUpRoutine();
+
+    Graph<int> graph = readGraph();
 
     int currentOption = 0;
 
@@ -21,10 +29,10 @@ int main(){
                 currentOption = VisualizeGraphMenu(graph);
                 break;
             case 2:
-                currentOption = FirstFaseMenu(graph);
+                currentOption = FirstFaseMenu(farm, graph);
                 break;
             case 3:
-                currentOption = SecondFaseMenu(graph);
+                currentOption = SecondFaseMenu(farm, graph);
                 break;
             case 4:
                 currentOption = ThirdFaseMenu(graph);
@@ -36,4 +44,30 @@ int main(){
 
 
 
+}
+
+FarmFresh2You setUpRoutine() {
+
+    string filename;
+
+    /*cout << "Introduza o nome do ficheiro da companhia: ";
+    cin >> filename;*/
+
+    filename = "farm.txt";
+    cout << filename << endl;
+
+    bool unvalid = true;
+    FarmFresh2You farmFresh2You;
+    while(unvalid){
+        unvalid = false;
+        try {
+            farmFresh2You = readCompanyFromFile(filename);
+        }catch (FileNotFound fileNotFound){
+            unvalid = true;
+            cout << "O ficheiro '"<< fileNotFound.getFilename() << "' nao existe. Por favor introduza outra vez" << endl;
+            cin >> filename;
+        }
+    }
+
+    return farmFresh2You;
 }

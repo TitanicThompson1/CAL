@@ -1,0 +1,6 @@
+idClient	<---- id do cliente
+dest		<---- destino do cabaz 
+weight		<---- peso do cabaz
+volume		<---- volume do cabaz
+invoice		<---- fatura
+:::::		<---- separador de cabazes
