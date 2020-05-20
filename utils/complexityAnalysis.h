@@ -18,4 +18,8 @@ using namespace std;
 
 void testAStarPerfomance();
 
+int GetMilliCount();
+
+int GetMilliSpan(int nTimeStart);
+
 #endif //CODE_COMPLEXITYANALYSIS_H

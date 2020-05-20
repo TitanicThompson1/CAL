@@ -9,6 +9,9 @@ vector<Basket> readBasketsFromFile(const string &filename) {
 
     ifstream infile(filename);
 
+    if(!infile.is_open())
+        throw FileNotFound(filename);
+
     int dest, idClient, invoice;
     double weight, volume;
 

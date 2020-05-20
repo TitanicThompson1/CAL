@@ -24,7 +24,7 @@ void heldKarpAlgorithm(const FarmFresh2You &farm, Graph<int> graph, const string
         for(int i = 0; i < baskets.size(); i++) {
             start = route.back();
             cabaz = baskets.at(i).getDest();
-            graph.aStarAlgorithm(start, cabaz);
+            graph.aStarAlgorithmGraph(start, cabaz);
 
             dist = dist = graph.calculatePathsize(start, cabaz);
 
@@ -41,7 +41,7 @@ void heldKarpAlgorithm(const FarmFresh2You &farm, Graph<int> graph, const string
     }
 
     start = route.back();
-    graph.aStarAlgorithm(start, end);
+    graph.aStarAlgorithmGraph(start, end);
     dist = graph.calculatePathsize(start, end);
     cout << "From " << start << " to " << end << ": " << dist << endl;
     route.push_back(end);
