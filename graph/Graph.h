@@ -196,6 +196,9 @@ public:
 	void aStarAlgorithm(T src, T dest);
 	int euclidianDistance(Vertex<T> *src, Vertex<T> *dest);
 	void exportResultsToFile(const string &filename, T src, T dest);
+    vector<T> dfsRemoveUnvisited(Vertex<T> *v) const;
+    void dfsVisit(Vertex<T> *v, vector<T> & res) const;
+
 
 };
 
@@ -558,6 +561,50 @@ void Graph<T>::exportResultsToFile(const string &filename, T src, T dest) {
     }
     outfile << "------------------------------" << endl;
     outfile.close();
+}
+
+template<class T>
+vector<T> Graph<T>::dfsRemoveUnvisited(Vertex<T> *v) const {
+    //receber parametro de entrada, primeiro vertice (farm)
+
+    // TODO (7 lines)
+    vector<T> res;
+    for (Vertex<T> * vertex : vertexSet)
+        vertex->visited = false;
+
+
+    //findVertex
+    //dfsVisit (vertex, res)
+    //tirar for
+
+    for (Vertex<T> * vertex : vertexSet){
+        if(!vertex->visited){
+            dfsVisit(vertex,res);
+        }
+    }
+    return res;
+}
+
+//removeAllUnvisited
+/*
+1. Encontrar Vertice da quinta
+2. Ver apartir da quinta quias os vértices que vao ser visitados
+3. Apagar os que nao foram visitados
+*/
+
+/*
+ * Auxiliary function that visits a vertex (v) and its adjacent not yet visited, recursively.
+ * Updates a parameter with the list of visited node contents.
+ */
+template <class T>
+void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> & res) const {
+    // TODO (7 lines)
+    v->visited=true;
+    res.push_back(v->info);
+    for(Edge<T> e : v->adj){
+        if(!e.dest->visited)
+            dfsVisit(e.dest,res);
+    }
 }
 
 
