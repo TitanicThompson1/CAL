@@ -9,29 +9,17 @@ void testAStarPerfomance() {
     ofstream res("resultsAStar.csv");
 
     res << "size; time" << endl;
+    
+    auto graph = readGraph("maps/GridGraphs/16x16/nodes.txt", "maps/GridGraphs/16x16/edges.txt");
 
-    res.precision(10);
+    auto start = std::chrono::high_resolution_clock::now();
 
-    for (int i = 0; i < 3; i++) {
+    aStarAlgorithm(FarmFresh2You(0,288), graph,"deliveries/exemploCabaz.txt");
 
-        auto graph = readGraph();
+    auto finish = std::chrono::high_resolution_clock::now();
+    auto elapsed = chrono::duration_cast<chrono::milliseconds>(finish - start).count();
 
-        auto start = std::chrono::high_resolution_clock::now();
+    res << "16x16" << ";" << elapsed << endl;
 
-        aStarAlgorithm(FarmFresh2You(0,24), graph,"deliveries/exemploCabaz.txt","");
-
-        auto finish = std::chrono::high_resolution_clock::now();
-        auto elapsed = chrono::duration_cast<chrono::microseconds>(finish - start).count();
-
-        if(i == 0)
-            res << "4x4";
-        else if(i==1)
-            res << "8x8";
-        else
-            res << "16x16";
-
-        res << ";" << elapsed << endl;
-
-    }
     res.close();
 }

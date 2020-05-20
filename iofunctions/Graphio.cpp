@@ -43,6 +43,19 @@ Graph<int> readGraph() {
 
 }
 
+
+Graph<int> readGraph(const string &nodesFilename, const string &edgesFilename) {
+
+    Graph<int> graph;
+
+    getNodesFromFile(nodesFilename, graph);
+
+    getEdgesFromFile(edgesFilename, graph);
+
+    return graph;
+}
+
+
 void getNodesFromFile(const string &nodesFilename, Graph<int> &graph) {
 
     ifstream Ninfile(nodesFilename);
@@ -70,6 +83,7 @@ void getNodesFromFile(const string &nodesFilename, Graph<int> &graph) {
         graph.addVertex(id, x, y);
     }
 }
+
 
 void getEdgesFromFile(const string &edgesFilename, Graph<int> &graph) {
 

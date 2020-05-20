@@ -14,3 +14,14 @@ void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &
     //graph.exportResultsToFile(resultFilename, baskets.at(0).getDest(), farm.getGarage());
 
 }
+
+
+
+void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &filename) {
+
+    vector<Basket> baskets = readBasketsFromFile(filename);
+
+    graph.aStarAlgorithm(farm.getFarm(), baskets.at(0).getDest());
+
+    graph.aStarAlgorithm(baskets.at(0).getDest(),farm.getGarage());
+}

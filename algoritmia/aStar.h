@@ -13,5 +13,7 @@
 
 void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &filename, const string &resultFilename);
 
+void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &filename);
+
 
 #endif //CODE_ASTAR_H
