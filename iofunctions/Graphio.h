@@ -6,13 +6,14 @@
 #define CODE_GRAPHIO_H
 
 #include "Graph.h"
+#include "FileNotFound.h"
 #include <fstream>
 #include <sstream>
 #include <string>
 
 using namespace std;
 
-Graph<int> readGraph(const string &nodesFilename, const string &edgesFilename);
+Graph<int> readGraph();
 
 void getEdgesFromFile(const string &edgesFilename, Graph<int> &graph);
 
