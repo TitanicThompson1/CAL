@@ -15,6 +15,8 @@ using namespace std;
 
 Graph<int> readGraph();
 
+Graph<int> readGraph(const string &nodesFilename, const string &edgesFilename);
+
 void getEdgesFromFile(const string &edgesFilename, Graph<int> &graph);
 
 void getNodesFromFile(const string &nodesFilename, Graph<int> &graph);

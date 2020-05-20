@@ -9,10 +9,14 @@
 #include "FarmerFresh2YouIO.h"
 #include "FileNotFound.h"
 #include "FarmFresh2You.h"
+#include "complexityAnalysis.h"
 
 FarmFresh2You setUpRoutine();
 
 int main(){
+
+    testAStarPerfomance();
+    return 0;
 
     FarmFresh2You farm = setUpRoutine();
 
@@ -49,13 +53,8 @@ int main(){
 FarmFresh2You setUpRoutine() {
 
     string filename;
-
-    /*cout << "Introduza o nome do ficheiro da companhia: ";
-    cin >> filename;*/
-
-    filename = "farm.txt";
-    cout << filename << endl;
-
+    cout << "Introduza o nome do ficheiro da companhia" << endl;
+    cin >> filename;
     bool unvalid = true;
     FarmFresh2You farmFresh2You;
     while(unvalid){

@@ -10,10 +10,8 @@ Graph<int> readGraph() {
     Graph<int> graph;
 
     string nodesFilename, edgesFilename;
-    /*cout << "Introduza o nome do ficheiro dos nos: ";
-    cin >> nodesFilename;*/
-    nodesFilename = "maps/GridGraphs/4x4/nodes.txt";
-    cout << nodesFilename << endl;
+    cout << "Introduza o nome do ficheiro dos nos" << endl;
+    cin >> nodesFilename;
 
     bool invalid;
     do{
@@ -27,11 +25,8 @@ Graph<int> readGraph() {
         }
     }while(invalid);
 
-    /*cout << "Introduza o nome do ficheiro das arestas: ";
-    cin >> edgesFilename;*/
-
-    edgesFilename = "maps/GridGraphs/4x4/edges.txt";
-    cout << edgesFilename << endl;
+    cout << "Introduza o nome do ficheiro das arestas" << endl;
+    cin >> edgesFilename;
 
     do{
         invalid = false;
@@ -47,6 +42,19 @@ Graph<int> readGraph() {
     return graph;
 
 }
+
+
+Graph<int> readGraph(const string &nodesFilename, const string &edgesFilename) {
+
+    Graph<int> graph;
+
+    getNodesFromFile(nodesFilename, graph);
+
+    getEdgesFromFile(edgesFilename, graph);
+
+    return graph;
+}
+
 
 void getNodesFromFile(const string &nodesFilename, Graph<int> &graph) {
 
@@ -75,6 +83,7 @@ void getNodesFromFile(const string &nodesFilename, Graph<int> &graph) {
         graph.addVertex(id, x, y);
     }
 }
+
 
 void getEdgesFromFile(const string &edgesFilename, Graph<int> &graph) {
 

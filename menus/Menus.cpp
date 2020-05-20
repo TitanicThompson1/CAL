@@ -2,8 +2,7 @@
 // Created by Ricardo Nunes on 14/05/2020.
 //
 
-#include <heldKarp.h>
-#include <aStar.h>
+
 #include "Menus.h"
 
 int VisualizeGraphMenu(Graph<int> &graph) {
@@ -46,6 +45,7 @@ int InitialMenu(Graph<int> &graph) {
     newWindow();
 
     cout << "1 - See graph" << endl
+        << "2 - Calculate first fase" << endl 
         << "3 - Calculate second fase" << endl
         << "-1 - Sair" << endl;
     cin >> nextMenu;
@@ -53,28 +53,24 @@ int InitialMenu(Graph<int> &graph) {
 }
 
 int FirstFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
-
     newWindow();
 
     string filename, resFilename;
-    /*cout << "Introduza o nome do ficheiro que contem os cabazes: ";
-    cin >> filename;*/
-    filename = "deliveries/exemploCabaz.txt";
-    cout << filename << endl;
+    cout << "Introduza o nome do ficheiro que contem os cabazes" << endl;
+    cin >> filename;
 
-    /*cout << "Introduza o nome do ficheiro que irá conter os resultados: ";
-    cin >> resFilename;*/
-    resFilename = "deliveries/resFase1.txt";
-    cout << resFilename << endl;
+    cout << "Introduza o nome do ficheiro que irá conter os resultados" << endl;
+    cin >> resFilename;
+
 
     aStarAlgorithm(farm, graph, filename, resFilename);
-
-    /*newWindow();
+    newWindow();
 
     cout << "Algoritmo realizado com sucesso!" << endl
-         << "Introduza qualquer caracter para prosseguir" << endl;
+        << "Introduza qualquer caracter para prosseguir" << endl;
 
-    cin >> filename;*/
+    cin >> filename;
+
 
     return 0;
 }
