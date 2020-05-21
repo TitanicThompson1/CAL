@@ -15,7 +15,7 @@ FarmFresh2You setUpRoutine();
 
 int main(){
 
-    testAStarPerfomance();
+    testAStarPerfomance2();
     return 0;
 
     FarmFresh2You farm = setUpRoutine();

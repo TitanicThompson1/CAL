@@ -10,16 +10,21 @@
 #include <fstream>
 #include <iostream>
 #include <unistd.h>
+#include <iomanip>
 
 #include "aStar.h"
 #include "Graphio.h"
 
 using namespace std;
 
-void testAStarPerfomance();
+void testAStarPerfomance1();
+
+void testAStarPerfomance2();
 
 int GetMilliCount();
 
 int GetMilliSpan(int nTimeStart);
+
+double registerTime(Graph<int> graph, const string &input, const string &output);
 
 #endif //CODE_COMPLEXITYANALYSIS_H
