@@ -43,7 +43,6 @@ aStarAlgorithmGraph(id1, id2):
         
         for(neighborVertice of Vertice):
             
-            ne
             newGValue <- calculateGValue(neighborVertice);
 
             if(newGValue < neighborVertice.oldGValue)

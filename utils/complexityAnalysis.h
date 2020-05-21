@@ -21,10 +21,6 @@ void testAStarPerfomance1();
 
 void testAStarPerfomance2();
 
-int GetMilliCount();
-
-int GetMilliSpan(int nTimeStart);
-
 double registerTime(Graph<int> graph, const string &input, const string &output);
 
 #endif //CODE_COMPLEXITYANALYSIS_H

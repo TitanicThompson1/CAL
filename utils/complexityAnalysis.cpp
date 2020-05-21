@@ -43,13 +43,19 @@ void testAStarPerfomance1() {
 
 void testAStarPerfomance2() {
 
-    ofstream res("AnalysisResults/resultsAStar2.txt");
+    ofstream res("AnalysisResults/resultsAStar3.txt");
 
     res << "map;time" << endl;
 
-    auto graph = readGraph("maps/GridGraphs/8x8/nodes.txt", "maps/GridGraphs/8x8/edges.txt");
+    auto graph = readGraph("maps/GridGraphs/4x4/nodes.txt", "maps/GridGraphs/4x4/edges.txt");
 
     double timeTaken = registerTime(graph,"deliveries/testeCabaz6.txt", "temp.txt");
+
+    res << "4x4" << ";" << timeTaken << setprecision(8) << endl;
+
+    graph = readGraph("maps/GridGraphs/8x8/nodes.txt", "maps/GridGraphs/8x8/edges.txt");
+
+    timeTaken = registerTime(graph,"deliveries/testeCabaz6.txt", "temp.txt");
 
     res << "8x8" << ";" << timeTaken << setprecision(8) << endl;
 
@@ -59,30 +65,8 @@ void testAStarPerfomance2() {
 
     res << "16x16" << ";" << timeTaken << setprecision(8) << endl;
 
-    graph = readGraph("maps/PortugalMaps/Porto/porto_strong_nodes_xy.txt", "maps/PortugalMaps/Porto/porto_strong_edges.txt");
-
-    timeTaken = registerTime(graph,"deliveries/testeCabaz1.txt", "temp.txt");
-
-    res << "Porto" << ";" << timeTaken << setprecision(8) << endl;
-
     res.close();
 
-}
-
-
-int GetMilliCount() {
-    timeb tb;
-    ftime( &tb );
-    int nCount = tb.millitm + (tb.time & 0xfffff) * 1000;
-    return nCount;
-}
-
-int GetMilliSpan(int nTimeStart)
-{
-    int nSpan = GetMilliCount() - nTimeStart;
-    if (nSpan < 0)
-        nSpan += 0x100000 * 1000;
-    return nSpan;
 }
 
 double registerTime(Graph<int> graph, const string &input, const string &output) {
@@ -91,7 +75,7 @@ double registerTime(Graph<int> graph, const string &input, const string &output)
 
     start = clock();
 
-    aStarAlgorithm(FarmFresh2You(1,41),graph, input,output);
+    aStarAlgorithm(FarmFresh2You(1,26839),graph, input,output);
 
     end = clock();
 
