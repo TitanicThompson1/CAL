@@ -11,6 +11,11 @@
 
 using namespace std;
 
+/**
+ * Reads the company from a file, returning it on a object FarmFresh2You
+ * @param filename name of the file that contains the company
+ * @return object of type FarmFresh2You
+ */
 FarmFresh2You readCompanyFromFile(const string &filename);
 
 

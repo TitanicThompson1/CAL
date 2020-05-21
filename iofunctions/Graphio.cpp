@@ -13,6 +13,7 @@ Graph<int> readGraph() {
     cout << "Introduza o nome do ficheiro dos nos" << endl;
     cin >> nodesFilename;
 
+    //Repeats until it has an valid file
     bool invalid;
     do{
         invalid = false;

@@ -15,7 +15,7 @@ void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &
 }
 
 
-
+/*
 void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &filename) {
 
     vector<Basket> baskets = readBasketsFromFile(filename);
@@ -24,3 +24,4 @@ void aStarAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &
 
     graph.aStarAlgorithmGraph(baskets.at(0).getDest(), farm.getGarage());
 }
+*/

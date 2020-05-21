@@ -8,8 +8,6 @@
 #include "Menus.h"
 #include "FarmerFresh2YouIO.h"
 #include "FileNotFound.h"
-#include "FarmFresh2You.h"
-#include "complexityAnalysis.h"
 
 FarmFresh2You setUpRoutine();
 
@@ -47,11 +45,17 @@ int main(){
 
 }
 
+/**
+ * This function reads the company from a file, returning an object of type FarmFresh2You.
+ * If the file doesnt exist, it asks the user until it has a valid file.
+ * @return the company
+ */
 FarmFresh2You setUpRoutine() {
 
     string filename;
     cout << "Introduza o nome do ficheiro da companhia" << endl;
     cin >> filename;
+
     bool unvalid = true;
     FarmFresh2You farmFresh2You;
     while(unvalid){

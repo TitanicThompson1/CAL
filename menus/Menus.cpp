@@ -29,6 +29,7 @@ int VisualizeGraphMenu(Graph<int> &graph) {
         }
     }
 
+    //Setting the edge color to yellow
     gv->setEdgeColor(0, "yellow");
 
     gv->rearrange();
@@ -78,7 +79,7 @@ int FirstFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
         cin >> filename;
         return 0;
     }
-    
+
     cout << "Algoritmo realizado com sucesso!" << endl
         << "Introduza qualquer caracter para prosseguir" << endl;
 

@@ -13,7 +13,11 @@
 
 using namespace std;
 
-
+/**
+ * Reads all baskets from a file, returning them on a vector
+ * @param filename name of the file containing the basket
+ * @return vector containing the baskets
+ */
 vector<Basket> readBasketsFromFile(const string &filename);
 
 
