@@ -6,15 +6,15 @@ baskets -> vetor de baskets com a localização da entrega (idDelivery)
 
 aStarAlgorithm(farm, graph, filename, resultFilename):
 
-    baskets <- readBasketsFromFile(filename);
+    baskets = readBasketsFromFile(filename);
 
-    graph->aStarAlgorithmGraph(idFarm, idDelivery);
+    aStarAlgorithmGraph(graph, idFarm, idDelivery);
 
-    graph->exportResultsToFile(resultFilename, idFarm, idDelivery);
+    exportResultsToFile(graph, resultFilename, idFarm, idDelivery);
 
-    graph->aStarAlgorithmGraph(idDelivery, idGarage);
+    aStarAlgorithmGraph(graph, idDelivery, idGarage);
 
-    graph->exportResultsToFile(resultFilename, idDelivery, idGarage);
+    exportResultsToFile(graph, resultFilename, idDelivery, idGarage);
 
 
 
@@ -27,32 +27,33 @@ id2 -> id do vertice de chegada
 vertice1 -> vertice de id1
 vertice2 -> vertice de id2
 
-
 aStarAlgorithmGraph(id1, id2):
 
     InitializingRoutine();
 
-    Queue <- vertice1;
+    Queue Q;
+
+    INSERT-QUEUE(Q, vertice1)
 
     while (Queue not empty):
-        
-        vertice <- EXTRACT-MIN(Queue); 
-        
+        vertice <- EXTRACT-MIN(Qu); 
+        setVerticeVisited(vertice);
+
         if (vertice equals vertice2)
             END;
         
         for(neighborVertice of Vertice):
             
-            newGValue <- calculateGValue(neighborVertice);
+            newGValue = calculateGValue(neighborVertice);
 
-            if(newGValue < neighborVertice.oldGValue)
+            if(newGValue < gValue(neighborVertice))
 
                 updateValues(neighborVertice)
                 
                 if(neighborVertice not visited)
-                    INSERT-QUEUE(Queue, neighborVertice);
+                    INSERT-QUEUE(Q, neighborVertice);
                 else
-                    DECREASE-KEY(Queue, neighborVertice);
+                    DECREASE-KEY(Q, neighborVertice);
 
 
 

@@ -45,9 +45,9 @@ int InitialMenu(Graph<int> &graph) {
 
     newWindow();
 
-    cout << "1 - See graph" << endl
-        << "2 - Calculate first fase" << endl 
-        << "3 - Calculate second fase" << endl
+    cout << "1 - Ver grafo" << endl
+        << "2 - Calcular primeira fase" << endl
+        << "3 - Calcular segunda fase" << endl
         << "-1 - Sair" << endl;
     cin >> nextMenu;
     return nextMenu;
