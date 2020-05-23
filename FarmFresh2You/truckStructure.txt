@@ -1,0 +1,3 @@
+cap		    <---- truck max capacity in cubic meters (possible values: 10.0<=cap<=50.0)
+type		<---- truck type (van: cap <= 20.0 ; box truck: 20.1<=cap<=50.0)
+:::::		<---- truck separator

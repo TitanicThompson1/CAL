@@ -5,7 +5,43 @@
 #include "Graphio.h"
 
 
+Graph<int> readGraph() {
 
+    Graph<int> graph;
+
+    string nodesFilename, edgesFilename;
+    cout << "Introduza o nome do ficheiro dos nos" << endl;
+    cin >> nodesFilename;
+
+    bool invalid;
+    do{
+        invalid = false;
+        try {
+            getNodesFromFile(nodesFilename, graph);
+        }catch (FileNotFound fileNotFound){
+            invalid = true;
+            cout << "O ficheiro '"<< fileNotFound.getFilename() << "' nao existe. Por favor introduza outra vez" << endl;
+            cin >> nodesFilename;
+        }
+    }while(invalid);
+
+    cout << "Introduza o nome do ficheiro das arestas" << endl;
+    cin >> edgesFilename;
+
+    do{
+        invalid = false;
+        try {
+            getEdgesFromFile(edgesFilename, graph);
+        }catch (FileNotFound fileNotFound){
+            invalid = true;
+            cout << "O ficheiro '"<< fileNotFound.getFilename() << "' nao existe. Por favor introduza outra vez" << endl;
+            cin >> edgesFilename;
+        }
+    }while(invalid);
+
+    return graph;
+
+}
 
 
 Graph<int> readGraph(const string &nodesFilename, const string &edgesFilename) {
@@ -17,12 +53,15 @@ Graph<int> readGraph(const string &nodesFilename, const string &edgesFilename) {
     getEdgesFromFile(edgesFilename, graph);
 
     return graph;
-
 }
+
 
 void getNodesFromFile(const string &nodesFilename, Graph<int> &graph) {
 
     ifstream Ninfile(nodesFilename);
+
+    if(!Ninfile.is_open())
+        throw FileNotFound(nodesFilename);
 
     //Importing nodes
     string node, node2, sId, sX, sY;
@@ -45,11 +84,19 @@ void getNodesFromFile(const string &nodesFilename, Graph<int> &graph) {
     }
 }
 
+
 void getEdgesFromFile(const string &edgesFilename, Graph<int> &graph) {
+
     ifstream Einfile(edgesFilename);
+
+    if(!Einfile.is_open())
+        throw FileNotFound(edgesFilename);
+
     //Importing edges
     string sSrc, sDest, node, node2;
     int src, dest;
+
+
 
     getline(Einfile,node);
     while(getline(Einfile,node)){

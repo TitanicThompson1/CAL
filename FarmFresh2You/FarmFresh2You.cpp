@@ -14,3 +14,4 @@ int FarmFresh2You::getGarage() const {
 int FarmFresh2You::getFarm() const {
     return farm;
 }
+

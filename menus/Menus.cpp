@@ -2,8 +2,9 @@
 // Created by Ricardo Nunes on 14/05/2020.
 //
 
+
+#include <thirdPhase.h>
 #include "Menus.h"
-#include "aStar.h"
 
 int VisualizeGraphMenu(Graph<int> &graph) {
 
@@ -45,7 +46,8 @@ int InitialMenu(Graph<int> &graph) {
     newWindow();
 
     cout << "1 - See graph" << endl
-        << "2 - Calculate first fase" << endl
+        << "2 - Calculate first fase" << endl 
+        << "3 - Calculate second fase" << endl
         << "-1 - Sair" << endl;
     cin >> nextMenu;
     return nextMenu;
@@ -74,11 +76,54 @@ int FirstFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
     return 0;
 }
 
-int SecondFaseMenu(Graph<int> &graph) {
+int SecondFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
+
+    newWindow();
+
+    string filename, resFilename;
+    /*cout << "Introduza o nome do ficheiro que contem os cabazes: ";
+    cin >> filename;*/
+    filename = "deliveries/exemploCabaz.txt";
+    cout << filename << endl;
+
+    /*cout << "Introduza o nome do ficheiro que irá conter os resultados: ";
+    cin >> resFilename;*/
+    resFilename = "deliveries/resFase2.txt";
+    cout << resFilename << endl;
+
+    heldKarpAlgorithm(farm, graph, filename, resFilename);
+
+    /*newWindow();
+
+    cout << "Algoritmo realizado com sucesso!" << endl
+         << "Introduza qualquer caracter para prosseguir" << endl;
+
+    cin >> filename;*/
+
     return 0;
 }
 
-int ThirdFaseMenu(Graph<int> &graph) {
+int ThirdFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
+
+    newWindow();
+
+    string filenameBaskets, filenameTrucks, resFilename, any;
+    cout << "Introduza o nome do ficheiro que contem os cabazes" << endl;
+    cin >> filenameBaskets;
+
+    cout << "Introduza o nome do ficheiro que contem os camioes" << endl;
+    cin >> filenameTrucks;
+
+    cout << "Introduza o nome do ficheiro que irá conter os resultados" << endl;
+    cin >> resFilename;
+
+    thirdPhaseAlgorithm(farm, graph, filenameBaskets, filenameTrucks, resFilename);
+    newWindow();
+
+    cout << "Algoritmo realizado com sucesso!" << endl
+         << "Introduza qualquer caracter para prosseguir" << endl;
+
+    cin >> any;
     return 0;
 }
 

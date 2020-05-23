@@ -1,0 +1,3 @@
+farm	<---- id do vértice inicial (quinta)
+garage	<---- id do vértice final (garagem)
+

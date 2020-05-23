@@ -7,14 +7,20 @@
 #include "Graph.h"
 #include "Menus.h"
 #include "FarmerFresh2YouIO.h"
+#include "FileNotFound.h"
 #include "FarmFresh2You.h"
+#include "complexityAnalysis.h"
+
+FarmFresh2You setUpRoutine();
 
 int main(){
 
-    FarmFresh2You farm = readCompanyFromFile("FarmFresh2You/farm.txt");
+    testAStarPerfomance();
+    return 0;
 
+    FarmFresh2You farm = setUpRoutine();
 
-    Graph<int> graph = readGraph("maps/GridGraphs/4x4/nodes.txt", "maps/GridGraphs/4x4/edges.txt");
+    Graph<int> graph = readGraph();
 
     int currentOption = 0;
 
@@ -30,7 +36,7 @@ int main(){
                 currentOption = FirstFaseMenu(farm, graph);
                 break;
             case 3:
-                currentOption = SecondFaseMenu(graph);
+                currentOption = SecondFaseMenu(farm, graph);
                 break;
             case 4:
                 currentOption = ThirdFaseMenu(graph);
@@ -42,4 +48,25 @@ int main(){
 
 
 
+}
+
+FarmFresh2You setUpRoutine() {
+
+    string filename;
+    cout << "Introduza o nome do ficheiro da companhia" << endl;
+    cin >> filename;
+    bool unvalid = true;
+    FarmFresh2You farmFresh2You;
+    while(unvalid){
+        unvalid = false;
+        try {
+            farmFresh2You = readCompanyFromFile(filename);
+        }catch (FileNotFound fileNotFound){
+            unvalid = true;
+            cout << "O ficheiro '"<< fileNotFound.getFilename() << "' nao existe. Por favor introduza outra vez" << endl;
+            cin >> filename;
+        }
+    }
+
+    return farmFresh2You;
 }

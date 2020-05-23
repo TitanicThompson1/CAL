@@ -194,10 +194,11 @@ public:
 	int calculateWeight(Vertex<T> *src, Vertex<T> *dest);
     void calculateHeuristics(T src, T dest);
 	void aStarAlgorithm(T src, T dest);
+	int calculatePathsize(T src, T dest);
 	int euclidianDistance(Vertex<T> *src, Vertex<T> *dest);
 	void exportResultsToFile(const string &filename, T src, T dest);
-    vector<T> dfsRemoveUnvisited(Vertex<T> *v) const;
-    void dfsVisit(Vertex<T> *v, vector<T> & res) const;
+    void dfsRemoveUnvisited(T source) const;
+    void dfsVisit(Vertex<T> *v) const;
 
 
 };
@@ -544,6 +545,18 @@ void Graph<T>::aStarAlgorithm(T src, T dest) {
     }
 }
 
+template <class T>
+int Graph<T>::calculatePathsize(T src, T dest) {
+    int sum = 0;
+    vector<T> result = getPath(src, dest);
+
+    for(int i = 0; i < result.size() - 1; i++) {
+        sum += euclidianDistance(findVertex(i), findVertex(i+1));
+    }
+
+    return sum;
+}
+
 template<class T>
 int Graph<T>::euclidianDistance(Vertex<T> *src, Vertex<T> *dest) {
     return sqrt(pow(dest->y - src->y, 2) + pow(dest->x - src->x, 2));
@@ -563,47 +576,45 @@ void Graph<T>::exportResultsToFile(const string &filename, T src, T dest) {
     outfile.close();
 }
 
-template<class T>
-vector<T> Graph<T>::dfsRemoveUnvisited(Vertex<T> *v) const {
-    //receber parametro de entrada, primeiro vertice (farm)
-
-    // TODO (7 lines)
-    vector<T> res;
-    for (Vertex<T> * vertex : vertexSet)
-        vertex->visited = false;
-
-
-    //findVertex
-    //dfsVisit (vertex, res)
-    //tirar for
-
-    for (Vertex<T> * vertex : vertexSet){
-        if(!vertex->visited){
-            dfsVisit(vertex,res);
-        }
-    }
-    return res;
-}
-
-//removeAllUnvisited
 /*
 1. Encontrar Vertice da quinta
 2. Ver apartir da quinta quias os vértices que vao ser visitados
 3. Apagar os que nao foram visitados
 */
-
+template<class T>
+void Graph<T>::dfsRemoveUnvisited(T source) const {
+    //receber parametro de entrada, primeiro vertice (farm)
+    Vertex<T> * srcVertex = initSingleSource(source);
+    for (Vertex<T> * v : vertexSet)
+        v->visited = false;
+    dfsVisit(source);
+    for (auto it = vertexSet.begin();  it != vertexSet.end(); it++) {
+        if(!(*it)->visited) {
+            it = vertexSet.erase(it);
+            it-- ;
+        }
+    }
+    for (auto it = vertexSet.begin();  it != vertexSet.end(); it++) {
+        vector<Edge<T>> edges = (*it)->adj;
+        for (auto itE = edges.begin(); itE != edges.end(); itE++) {
+            if (!((*itE)->dest->visited)) {
+                erase((*itE));
+            }
+        }
+    }
+}
 /*
  * Auxiliary function that visits a vertex (v) and its adjacent not yet visited, recursively.
  * Updates a parameter with the list of visited node contents.
  */
 template <class T>
-void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> & res) const {
-    // TODO (7 lines)
+void Graph<T>::dfsVisit(Vertex<T> *v) const {
     v->visited=true;
-    res.push_back(v->info);
+    //res.push_back(v->info);
     for(Edge<T> e : v->adj){
         if(!e.dest->visited)
-            dfsVisit(e.dest,res);
+            dfsVisit(e.dest);
+            //dfsVisit(e.dest,res);
     }
 }
 

@@ -9,12 +9,13 @@
 class FarmFresh2You {
     int farm, garage;
 public:
+    FarmFresh2You() {};
+
     FarmFresh2You(int delivery, int garage);
 
     int getFarm() const;
 
     int getGarage() const;
-
 };
 
 
