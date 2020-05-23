@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.10)
 project(code)
 
 set(CMAKE_CXX_STANDARD 14)
-
 link_libraries(ws2_32 wsock32)
 
 include_directories(lib)
@@ -18,5 +17,5 @@ add_executable(code main.cpp graph/Graph.h graph/MutablePriorityQueue.h iofuncti
         algoritmia/aStar.h algoritmia/aStar.cpp FarmFresh2You/Basket.cpp FarmFresh2You/Basket.h FarmFresh2You/Truck.cpp
         FarmFresh2You/Truck.h iofunctions/BasketsIO.cpp iofunctions/BasketsIO.h FarmFresh2You/FarmFresh2You.cpp
         FarmFresh2You/FarmFresh2You.h iofunctions/FarmerFresh2YouIO.cpp iofunctions/FarmerFresh2YouIO.h
-        iofunctions/FileNotFound.h utils/complexityAnalysis.cpp utils/complexityAnalysis.h algoritmia/heldKarp.cpp algoritmia/heldKarp.h)
+        iofunctions/FileNotFound.h utils/complexityAnalysis.cpp utils/complexityAnalysis.h algoritmia/heldKarp.cpp algoritmia/heldKarp.h graph/VerticeNotFound.h)
 

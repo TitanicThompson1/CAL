@@ -9,6 +9,9 @@
 
 using namespace std;
 
+/**
+ * Error class for a file not found
+ */
 class FileNotFound {
     string filename;
 public:

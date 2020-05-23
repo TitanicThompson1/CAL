@@ -20,14 +20,28 @@
 
 int InitialMenu(Graph<int> &graph);
 
+/**
+ * This menu allows the user to visualize the graph using GraphViewer
+ * @param graph graph to see
+ * @return next menu
+ */
 int VisualizeGraphMenu(Graph<int> &graph);
 
+/**
+ * This menu applies the A* algorithm to solve fase 1
+ * @param farm farm the contains the id of the begining vertice, and the id of the destination vertice
+ * @param graph graph to perfom A* to
+ * @return next menu
+ */
 int FirstFaseMenu(const FarmFresh2You &farm, Graph<int> &graph);
 
 int SecondFaseMenu(const FarmFresh2You &farm, Graph<int> &graph);
 
 int ThirdFaseMenu(Graph<int> &graph);
 
+/**
+ * Function that simulates a new window on the console
+ */
 void newWindow();
 
 #endif //CODE_MENUS_H

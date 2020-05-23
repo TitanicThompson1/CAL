@@ -29,6 +29,7 @@ int VisualizeGraphMenu(Graph<int> &graph) {
         }
     }
 
+    //Setting the edge color to yellow
     gv->setEdgeColor(0, "yellow");
 
     gv->rearrange();
@@ -44,9 +45,9 @@ int InitialMenu(Graph<int> &graph) {
 
     newWindow();
 
-    cout << "1 - See graph" << endl
-        << "2 - Calculate first fase" << endl 
-        << "3 - Calculate second fase" << endl
+    cout << "1 - Ver grafo" << endl
+        << "2 - Calcular primeira fase" << endl
+        << "3 - Calcular segunda fase" << endl
         << "-1 - Sair" << endl;
     cin >> nextMenu;
     return nextMenu;
@@ -62,15 +63,27 @@ int FirstFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
     cout << "Introduza o nome do ficheiro que irá conter os resultados" << endl;
     cin >> resFilename;
 
-
-    aStarAlgorithm(farm, graph, filename, resFilename);
     newWindow();
+
+    try {
+        aStarAlgorithm(farm, graph, filename, resFilename);
+    }catch (FileNotFound f){
+        cout << "Não foi possivel encontrar o ficheiro " << f.getFilename() << "." << endl;
+        cout << "Introduza qualquer caracter para prosseguir" << endl;
+
+        cin >> filename;
+        return 0;
+    }catch (VerticeNotFound<int> v){
+        cout << "O vertice de id " << to_string(v.getInfo()) << "não existe." << endl;
+        cout << "Introduza qualquer caracter para prosseguir" << endl;
+        cin >> filename;
+        return 0;
+    }
 
     cout << "Algoritmo realizado com sucesso!" << endl
         << "Introduza qualquer caracter para prosseguir" << endl;
 
     cin >> filename;
-
 
     return 0;
 }
@@ -102,7 +115,7 @@ int ThirdFaseMenu(Graph<int> &graph) {
 }
 
 void newWindow() {
-    for (int i = 0; i < 10; i++){
+    for (int i = 0; i < 20; i++){
         cout << endl;
     }
 }

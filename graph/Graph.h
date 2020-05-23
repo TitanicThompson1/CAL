@@ -13,6 +13,7 @@
 #include <cmath>
 #include <fstream>
 #include "MutablePriorityQueue.h"
+#include "VerticeNotFound.h"
 
 using namespace std;
 
@@ -31,32 +32,31 @@ class Vertex {
 	bool visited;          // auxiliary field
 	double dist = 0;
 	Vertex<T> *path = nullptr;
-	int x, y;
+	double x, y;
 	int queueIndex = 0; 		// required by MutablePriorityQueue
 	int heuristic = 0;          //Used in A* algorithm
     double gValue = 0;
-public:
-    const vector<Edge<T>> &getAdj() const;
-
-private:
 
     void addEdge(Vertex<T> *dest, double w);
 
 public:
-    int getX() const;
-
-    int getY() const;
 
 
-public:
 	Vertex(T in);
-	Vertex(T in, int x, int y);
+	Vertex(T in, double x, double y);
 	bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
 	T getInfo() const;
 	double getDist() const;
 	Vertex *getPath() const;
 	friend class Graph<T>;
 	friend class MutablePriorityQueue<Vertex<T>>;
+
+    const vector<Edge<T>> &getAdj() const;
+
+    double getX() const;
+
+    double getY() const;
+
 };
 
 
@@ -64,7 +64,7 @@ template <class T>
 Vertex<T>::Vertex(T in): info(in) {}
 
 template <class T>
-Vertex<T>::Vertex(T in, int x, int y): info(in), x(x), y(y) {}
+Vertex<T>::Vertex(T in, double x, double y): info(in), x(x), y(y) {}
 
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),
@@ -96,12 +96,12 @@ Vertex<T> *Vertex<T>::getPath() const {
 }
 
 template<class T>
-int Vertex<T>::getX() const {
+double Vertex<T>::getX() const {
     return x;
 }
 
 template<class T>
-int Vertex<T>::getY() const {
+double Vertex<T>::getY() const {
     return y;
 }
 
@@ -169,7 +169,7 @@ class Graph {
 public:
 	Vertex<T> *findVertex(const T &in) const;
 	bool addVertex(const T &in);
-	bool addVertex(const T &in, int x, int y);
+	bool addVertex(const T &in, double x, double y);
 	bool addEdge(const T &sourc, const T &dest, double w);
 	int getNumVertex() const;
 	vector<Vertex<T> *> getVertexSet() const;
@@ -188,12 +188,11 @@ public:
 	// Fp07 - minimum spanning tree
     bool addBidirectionalEdge(const T &sourc, const T &dest, double w);
 	vector<Vertex<T>*> calculatePrim();
-	vector<Vertex<T>*> calculateKruskal();
 
 	//Done by us
 	int calculateWeight(Vertex<T> *src, Vertex<T> *dest);
-    void calculateHeuristics(T src, T dest);
-	void aStarAlgorithm(T src, T dest);
+    void calculateHeuristics(T dest);
+	void aStarAlgorithmGraph(T src, T dest);
 	int calculatePathsize(T src, T dest);
 	int euclidianDistance(Vertex<T> *src, Vertex<T> *dest);
 	void exportResultsToFile(const string &filename, T src, T dest);
@@ -246,7 +245,7 @@ bool Graph<T>::addVertex(const T &in) {
 
 //Added by us
 template <class T>
-bool Graph<T>::addVertex(const T &in, int x, int y) {
+bool Graph<T>::addVertex(const T &in, double x, double y) {
     if (findVertex(in) != nullptr)
         return false;
     vertexSet.push_back(new Vertex<T>(in,x,y));
@@ -288,6 +287,8 @@ Vertex<T> * Graph<T>::initSingleSource(const T &origin) {
 		v->path = nullptr;
 	}
 	auto s = findVertex(origin);
+	if(s == NULL)
+	    throw VerticeNotFound<T>(origin);
 	s->dist = 0;
 	s->gValue = 0;
 	return s;
@@ -487,13 +488,6 @@ vector<Vertex<T>* > Graph<T>::calculatePrim() {
 }
 
 
-
-template <class T>
-vector<Vertex<T>*> Graph<T>::calculateKruskal() {
-	// TODO
-	return vertexSet;
-}
-
 template<class T>
 int Graph<T>::calculateWeight(Vertex<T> *src, Vertex<T> *dest) {
     return euclidianDistance(src,dest);
@@ -502,44 +496,57 @@ int Graph<T>::calculateWeight(Vertex<T> *src, Vertex<T> *dest) {
 
 
 template<class T>
-void Graph<T>::calculateHeuristics(T src, T dest) {
+void Graph<T>::calculateHeuristics(T dest) {
     Vertex<T> *VDest = findVertex(dest);
+    if(VDest == NULL)
+        throw VerticeNotFound<T>(dest);
+
     for (auto v : vertexSet)
-        v->heuristic = euclidianDistance(VDest, VDest);
+        v->heuristic = euclidianDistance(v, VDest);
 
 }
 
 template<class T>
-void Graph<T>::aStarAlgorithm(T src, T dest) {
+void Graph<T>::aStarAlgorithmGraph(T src, T dest) {
     Vertex<T> * VSrc = initSingleSource(src);
-    calculateHeuristics(src, dest);
+    calculateHeuristics(dest);
 
     MutablePriorityQueue<Vertex<T>> q;
     q.insert(VSrc);
 
+    T res;
+
     while( !q.empty() ) {
         auto v = q.extractMin();
 
-        if(v->info == dest) break;
+        if(v->info == dest){
+            break;
+        }
+        v->visited = true;
 
         for(Edge<T> e : v->adj) {
             Vertex<T> * current = e.getDest();
             double newGValue = v->gValue + e.getWeight();
 
+            if(current->visited) continue;
+
             if (newGValue < current->gValue) {
                 current->path = v;
                 current->gValue = newGValue;
                 if (current->dist == INF){
+                    current->dist = current->gValue + current->heuristic;
                     q.insert(current);
                 }
                 else{
+                    current->dist = current->gValue + current->heuristic;
                     q.decreaseKey(current);
                 }
-                current->dist = current->gValue + current->heuristic;
             }
         }
 
     }
+    //cout << "Res:" << res << endl;
+
 }
 
 template <class T>

@@ -10,13 +10,18 @@
 #include <fstream>
 #include <iostream>
 #include <unistd.h>
+#include <iomanip>
 
 #include "aStar.h"
 #include "Graphio.h"
 
 using namespace std;
 
-void testAStarPerfomance();
+void testAStarPerfomance1();
+
+void testAStarPerfomance2();
+
+double registerTime(Graph<int> graph, const string &input, const string &output);
 
 void testHeldKarpPerformance();
 

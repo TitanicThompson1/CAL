@@ -7,4 +7,5 @@ maps/GridGraphs/8x8/edges.txt
 maps/GridGraphs/16x16/nodes.txt
 maps/GridGraphs/16x16/edges.txt
 
-
+maps/PortugalMaps/Porto/porto_strong_nodes_xy.txt
+maps/PortugalMaps/Porto/porto_strong_edges.txt

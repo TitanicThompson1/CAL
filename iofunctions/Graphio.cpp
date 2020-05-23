@@ -13,6 +13,7 @@ Graph<int> readGraph() {
     cout << "Introduza o nome do ficheiro dos nos" << endl;
     cin >> nodesFilename;
 
+    //Repeats until it has an valid file
     bool invalid;
     do{
         invalid = false;
@@ -76,10 +77,10 @@ void getNodesFromFile(const string &nodesFilename, Graph<int> &graph) {
         id = stoi(sId);
 
         getline(part,sX,',');
-        x = stoi(sX);
+        x = stod(sX);
 
         getline(part,sY,',');
-        y = stoi(sY);
+        y = stod(sY);
 
         graph.addVertex(id, x, y);
     }

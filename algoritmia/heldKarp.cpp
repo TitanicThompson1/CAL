@@ -44,8 +44,15 @@ void heldKarpAlgorithm(const FarmFresh2You &farm, Graph<int> graph, const string
     }
 
     start = route.back();
+<<<<<<< HEAD
     graph.aStarAlgorithm(start, end); // Get path from the last basket to the garage
     dist = graph.calculatePathsize(start, end); // Calculate the previous path size
     route.push_back(end); // Add the garage to the route
+=======
+    graph.aStarAlgorithmGraph(start, end);
+    dist = graph.calculatePathsize(start, end);
+    cout << "From " << start << " to " << end << ": " << dist << endl;
+    route.push_back(end);
+>>>>>>> ricardo
     graph.exportResultsToFile(resultFilename, start, end);
 }
