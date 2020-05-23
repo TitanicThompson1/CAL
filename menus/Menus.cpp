@@ -80,24 +80,19 @@ int SecondFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
     newWindow();
 
     string filename, resFilename;
-    /*cout << "Introduza o nome do ficheiro que contem os cabazes: ";
-    cin >> filename;*/
-    filename = "deliveries/exemploCabaz.txt";
-    cout << filename << endl;
+    cout << "Introduza o nome do ficheiro que contem os cabazes: ";
+    cin >> filename;
 
-    /*cout << "Introduza o nome do ficheiro que irá conter os resultados: ";
-    cin >> resFilename;*/
-    resFilename = "deliveries/resFase2.txt";
-    cout << resFilename << endl;
+    cout << "Introduza o nome do ficheiro que irá conter os resultados: ";
+    cin >> resFilename;
 
     heldKarpAlgorithm(farm, graph, filename, resFilename);
-
-    /*newWindow();
+    newWindow();
 
     cout << "Algoritmo realizado com sucesso!" << endl
          << "Introduza qualquer caracter para prosseguir" << endl;
 
-    cin >> filename;*/
+    cin >> filename;
 
     return 0;
 }

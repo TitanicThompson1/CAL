@@ -27,6 +27,7 @@ Graph<int> readGraph() {
 
     cout << "Introduza o nome do ficheiro das arestas" << endl;
     cin >> edgesFilename;
+    edgesFilename = "maps/GridGraphs/4x4/edges.txt";
 
     do{
         invalid = false;

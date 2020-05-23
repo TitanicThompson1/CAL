@@ -544,12 +544,13 @@ void Graph<T>::aStarAlgorithm(T src, T dest) {
 
 template <class T>
 int Graph<T>::calculatePathsize(T src, T dest) {
-    int sum = 0;
-    vector<T> result = getPath(src, dest);
-
+    // Returns the size of a Path previously stored
+    double sum = 0;
+    vector<T> result = getPath(src, dest); // Gets stored path
     for(int i = 0; i < result.size() - 1; i++) {
-        sum += euclidianDistance(findVertex(i), findVertex(i+1));
+        sum += euclidianDistance(findVertex(result.at(i)), findVertex(result.at(i+1)));
     }
+    cout << result.back() << endl;
 
     return sum;
 }

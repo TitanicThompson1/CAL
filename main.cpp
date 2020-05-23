@@ -15,8 +15,11 @@ FarmFresh2You setUpRoutine();
 
 int main(){
 
-    testAStarPerfomance();
-    return 0;
+    /*testAStarPerfomance();
+    return 0;*/
+
+    /*testHeldKarpPerformance(); Teste Held
+    return 0;*/
 
     FarmFresh2You farm = setUpRoutine();
 
@@ -45,9 +48,6 @@ int main(){
     }
 
     return 0;
-
-
-
 }
 
 FarmFresh2You setUpRoutine() {
@@ -55,6 +55,7 @@ FarmFresh2You setUpRoutine() {
     string filename;
     cout << "Introduza o nome do ficheiro da companhia" << endl;
     cin >> filename;
+
     bool unvalid = true;
     FarmFresh2You farmFresh2You;
     while(unvalid){

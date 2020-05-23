@@ -5,52 +5,47 @@
 #include "heldKarp.h"
 
 void heldKarpAlgorithm(const FarmFresh2You &farm, Graph<int> graph, const string &filename, const string &resultFilename) {
-    int start, end, cabaz, dist, min_dist = -1, min_i = -1, min_cabaz;
-    start = farm.getFarm();
-    end = farm.getGarage();
+    // Does HeldKarp Algorithm
+    int start, end, cabaz, min_i = -1, min_cabaz;
+    double dist, min_dist = -1;
 
-    cout << "Start: " << start << " " << "End: " << end << endl;
+    start = farm.getFarm(); // Get Farm position
+    end = farm.getGarage(); // Get Garage position
 
-    vector<Basket> baskets = readBasketsFromFile(filename);
+    vector<Basket> baskets = readBasketsFromFile(filename); // Read Baskets from a text file
 
     vector<int> route;
-    route.push_back(start);
+    route.push_back(start); // Add farm to the route
 
     int size = baskets.size();
 
     for(int j = 0; j < size; j++) {
         min_dist = -1;
         min_i = -1;
+
+        // Get the closest basket (point)
         for(int i = 0; i < baskets.size(); i++) {
             start = route.back();
             cabaz = baskets.at(i).getDest();
-            graph.aStarAlgorithm(start, cabaz);
+            graph.aStarAlgorithm(start, cabaz); // Get the route to a basket
 
-            dist = dist = graph.calculatePathsize(start, cabaz);
+            dist = graph.calculatePathsize(start, cabaz); // Calculate the previous route size
 
-            cout << "From " << start << " to " << cabaz << ": " << dist << endl;
             if(dist < min_dist || min_i == -1) {
                 min_dist = dist;
                 min_i = i;
                 min_cabaz = cabaz;
             }
         }
-        route.push_back(min_cabaz);
-        baskets.erase(baskets.begin() + min_i);
+
+        route.push_back(min_cabaz); // Add the closest point to the route
+        baskets.erase(baskets.begin() + min_i); // Deletes the closest basket from the baskets vector
         graph.exportResultsToFile(resultFilename, start, min_cabaz);
     }
 
     start = route.back();
-    graph.aStarAlgorithm(start, end);
-    dist = graph.calculatePathsize(start, end);
-    cout << "From " << start << " to " << end << ": " << dist << endl;
-    route.push_back(end);
+    graph.aStarAlgorithm(start, end); // Get path from the last basket to the garage
+    dist = graph.calculatePathsize(start, end); // Calculate the previous path size
+    route.push_back(end); // Add the garage to the route
     graph.exportResultsToFile(resultFilename, start, end);
-
-    for(int i = 0; i < route.size(); i++) {
-        if(i == route.size() - 1)
-            cout << route.at(i) << endl;
-        else
-            cout << route.at(i) << " -> ";
-    }
 }
