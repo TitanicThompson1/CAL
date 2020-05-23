@@ -15,9 +15,6 @@ FarmFresh2You setUpRoutine();
 
 int main(){
 
-    testAStarPerfomance();
-    return 0;
-
     FarmFresh2You farm = setUpRoutine();
 
     Graph<int> graph = readGraph();
@@ -39,7 +36,7 @@ int main(){
                 currentOption = SecondFaseMenu(farm, graph);
                 break;
             case 4:
-                currentOption = ThirdFaseMenu(graph);
+                currentOption = ThirdFaseMenu(farm, graph);
                 break;
         }
     }
