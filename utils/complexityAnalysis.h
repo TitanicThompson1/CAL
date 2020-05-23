@@ -18,4 +18,6 @@ using namespace std;
 
 void testAStarPerfomance();
 
+void testHeldKarpPerformance();
+
 #endif //CODE_COMPLEXITYANALYSIS_H
