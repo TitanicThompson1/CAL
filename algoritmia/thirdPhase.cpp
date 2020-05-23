@@ -20,20 +20,23 @@ void thirdPhaseAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const str
     //Treat trucks
     vector<Truck> trucks = readTrucksFromFile(filenameT);
     double currentCapacity=0.0;
-    for (auto it = trucks.begin(); it != trucks.end(); it++) {
-        if(!baskets.empty()){
-            auto itB = baskets.begin();
-            while (currentCapacity <= (*it).getCap() && itB != baskets.end()) {
-                //se meter no camiao, se estiver vazio os baskets, nao add mais
+    for (auto it = trucks.begin(); it != trucks.end() && !baskets.empty(); it++) {
+
+        auto itB = baskets.begin();
+        auto maxCap = (*it).getCap();
+        while (currentCapacity < maxCap && itB != baskets.end()) {
+            //se meter no camiao, se estiver vazio os baskets, nao add mais
+            if( maxCap >= currentCapacity + (*itB).getVolume()){
                 currentCapacity += (*itB).getVolume();
-                itB++;
                 (*it).addBasket(*itB);
                 itB = baskets.erase(itB);
-
             }
-            heldKarpCore(farm.getFarm(), farm.getGarage(), (it)->getToDeliver(), graph, resultFilename);
-            currentCapacity = 0.0;
+            itB++;
+
         }
+        heldKarpCore(farm.getFarm(), farm.getGarage(), (it)->getToDeliver(), graph, resultFilename);
+        currentCapacity = 0.0;
+
     }
 }
 
