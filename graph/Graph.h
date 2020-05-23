@@ -196,6 +196,9 @@ public:
 	int calculatePathsize(T src, T dest);
 	int euclidianDistance(Vertex<T> *src, Vertex<T> *dest);
 	void exportResultsToFile(const string &filename, T src, T dest);
+    void dfsRemoveUnvisited(T source) const;
+    void dfsVisit(Vertex<T> *v) const;
+
 
 };
 
@@ -579,6 +582,48 @@ void Graph<T>::exportResultsToFile(const string &filename, T src, T dest) {
     }
     outfile << "------------------------------" << endl;
     outfile.close();
+}
+
+/*
+1. Encontrar Vertice da quinta
+2. Ver apartir da quinta quias os vértices que vao ser visitados
+3. Apagar os que nao foram visitados
+*/
+template<class T>
+void Graph<T>::dfsRemoveUnvisited(T source) const {
+    //receber parametro de entrada, primeiro vertice (farm)
+    Vertex<T> * srcVertex = initSingleSource(source);
+    for (Vertex<T> * v : vertexSet)
+        v->visited = false;
+    dfsVisit(source);
+    for (auto it = vertexSet.begin();  it != vertexSet.end(); it++) {
+        if(!(*it)->visited) {
+            it = vertexSet.erase(it);
+            it-- ;
+        }
+    }
+    for (auto it = vertexSet.begin();  it != vertexSet.end(); it++) {
+        vector<Edge<T>> edges = (*it)->adj;
+        for (auto itE = edges.begin(); itE != edges.end(); itE++) {
+            if (!((*itE)->dest->visited)) {
+                erase((*itE));
+            }
+        }
+    }
+}
+/*
+ * Auxiliary function that visits a vertex (v) and its adjacent not yet visited, recursively.
+ * Updates a parameter with the list of visited node contents.
+ */
+template <class T>
+void Graph<T>::dfsVisit(Vertex<T> *v) const {
+    v->visited=true;
+    //res.push_back(v->info);
+    for(Edge<T> e : v->adj){
+        if(!e.dest->visited)
+            dfsVisit(e.dest);
+            //dfsVisit(e.dest,res);
+    }
 }
 
 

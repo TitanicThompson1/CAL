@@ -34,7 +34,7 @@ int main(){
                 currentOption = SecondFaseMenu(farm, graph);
                 break;
             case 4:
-                currentOption = ThirdFaseMenu(graph);
+                currentOption = ThirdFaseMenu(farm, graph);
                 break;
         }
     }

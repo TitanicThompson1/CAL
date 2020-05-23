@@ -10,6 +10,14 @@ int Basket::getDest() const {
     return dest;
 }
 
+double Basket::getVolume() const {
+    return volume;
+}
+
+void Basket::setVolume(double volume) {
+    Basket::volume = volume;
+}
+
 
 
 

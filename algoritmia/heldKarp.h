@@ -13,5 +13,6 @@
 
 void heldKarpAlgorithm(const FarmFresh2You &farm, Graph<int> graph, const string &filename, const string &resultFilename);
 
+void heldKarpCore(int startVertex, int endVertex, vector<Basket> allBaskets, Graph<int> &graph, const string &resultFilename);
 
 #endif //CODE_HELDKARP_H

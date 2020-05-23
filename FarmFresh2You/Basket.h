@@ -16,6 +16,10 @@ public:
 
     int getDest() const;
 
+    double getVolume() const;
+
+    void setVolume(double volume);
+
 };
 
 

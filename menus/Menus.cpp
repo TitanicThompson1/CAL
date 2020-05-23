@@ -3,6 +3,7 @@
 //
 
 
+#include <thirdPhase.h>
 #include "Menus.h"
 
 int VisualizeGraphMenu(Graph<int> &graph) {
@@ -110,7 +111,27 @@ int SecondFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
     return 0;
 }
 
-int ThirdFaseMenu(Graph<int> &graph) {
+int ThirdFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
+
+    newWindow();
+
+    string filenameBaskets, filenameTrucks, resFilename, any;
+    cout << "Introduza o nome do ficheiro que contem os cabazes" << endl;
+    cin >> filenameBaskets;
+
+    cout << "Introduza o nome do ficheiro que contem os camioes" << endl;
+    cin >> filenameTrucks;
+
+    cout << "Introduza o nome do ficheiro que irá conter os resultados" << endl;
+    cin >> resFilename;
+
+    thirdPhaseAlgorithm(farm, graph, filenameBaskets, filenameTrucks, resFilename);
+    newWindow();
+
+    cout << "Algoritmo realizado com sucesso!" << endl
+         << "Introduza qualquer caracter para prosseguir" << endl;
+
+    cin >> any;
     return 0;
 }
 

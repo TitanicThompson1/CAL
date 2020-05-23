@@ -37,7 +37,7 @@ int FirstFaseMenu(const FarmFresh2You &farm, Graph<int> &graph);
 
 int SecondFaseMenu(const FarmFresh2You &farm, Graph<int> &graph);
 
-int ThirdFaseMenu(Graph<int> &graph);
+int ThirdFaseMenu(const FarmFresh2You &farm, Graph<int> &graph);
 
 /**
  * Function that simulates a new window on the console
