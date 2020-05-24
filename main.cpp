@@ -8,13 +8,16 @@
 #include "Menus.h"
 #include "FarmerFresh2YouIO.h"
 #include "FileNotFound.h"
+#include "complexityAnalysis.h"
 
 FarmFresh2You setUpRoutine();
 
 int main(){
 
-    FarmFresh2You farm = setUpRoutine();
+    //FarmFresh2You farm = setUpRoutine();
+    testThirdPhasePerformance();
 
+    /*
     Graph<int> graph = readGraph();
 
     int currentOption = 0;
@@ -37,7 +40,7 @@ int main(){
                 currentOption = ThirdFaseMenu(farm, graph);
                 break;
         }
-    }
+    }*/
 
     return 0;
 }

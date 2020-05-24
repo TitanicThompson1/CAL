@@ -2,8 +2,6 @@
 // Created by Ricardo Nunes on 14/05/2020.
 //
 
-
-#include <thirdPhase.h>
 #include "Menus.h"
 
 int VisualizeGraphMenu(Graph<int> &graph) {
@@ -49,6 +47,7 @@ int InitialMenu(Graph<int> &graph) {
     cout << "1 - Ver grafo" << endl
         << "2 - Calcular primeira fase" << endl
         << "3 - Calcular segunda fase" << endl
+        << "4 - Calcular terceira fase" << endl
         << "-1 - Sair" << endl;
     cin >> nextMenu;
     return nextMenu;
@@ -126,6 +125,8 @@ int ThirdFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
     cin >> resFilename;
 
     thirdPhaseAlgorithm(farm, graph, filenameBaskets, filenameTrucks, resFilename);
+
+    //testThirdPhasePerformance();
     newWindow();
 
     cout << "Algoritmo realizado com sucesso!" << endl

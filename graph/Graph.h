@@ -196,10 +196,8 @@ public:
 	int calculatePathsize(T src, T dest);
 	int euclidianDistance(Vertex<T> *src, Vertex<T> *dest);
 	void exportResultsToFile(const string &filename, T src, T dest);
-    void dfsRemoveUnvisited(T source) const;
+    void dfsRemoveUnvisited(T source) ;
     void dfsVisit(Vertex<T> *v) const;
-
-
 };
 
 
@@ -590,12 +588,12 @@ void Graph<T>::exportResultsToFile(const string &filename, T src, T dest) {
 3. Apagar os que nao foram visitados
 */
 template<class T>
-void Graph<T>::dfsRemoveUnvisited(T source) const {
+void Graph<T>::dfsRemoveUnvisited(T source) {
     //receber parametro de entrada, primeiro vertice (farm)
     Vertex<T> * srcVertex = initSingleSource(source);
     for (Vertex<T> * v : vertexSet)
         v->visited = false;
-    dfsVisit(source);
+    dfsVisit(srcVertex);
     for (auto it = vertexSet.begin();  it != vertexSet.end(); it++) {
         if(!(*it)->visited) {
             it = vertexSet.erase(it);
@@ -605,8 +603,8 @@ void Graph<T>::dfsRemoveUnvisited(T source) const {
     for (auto it = vertexSet.begin();  it != vertexSet.end(); it++) {
         vector<Edge<T>> edges = (*it)->adj;
         for (auto itE = edges.begin(); itE != edges.end(); itE++) {
-            if (!((*itE)->dest->visited)) {
-                erase((*itE));
+            if (!((itE)->dest->visited)) {
+                edges.erase(itE);
             }
         }
     }

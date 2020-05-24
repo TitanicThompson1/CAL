@@ -3,6 +3,7 @@
 //
 
 #include <heldKarp.h>
+#include <thirdPhase.h>
 #include "complexityAnalysis.h"
 
 void testAStarPerfomance1() {
@@ -98,7 +99,39 @@ double registerTime(Graph<int> graph, const string &input, const string &output)
 
     end = clock();
 
+    return double(end - start) / double(CLOCKS_PER_SEC);
+}
+
+double registerTime3Phase(Graph<int> graph, const string &inputBaskets, const string &inputTrucks, const string &output) {
+
+    clock_t start, end;
+
+    start = clock();
+//void thirdPhaseAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &filenameB,  const string &filenameT, const string &resultFilename);
+    thirdPhaseAlgorithm(FarmFresh2You(1,26839),graph, inputBaskets, inputTrucks, output);
+
+    end = clock();
 
     return double(end - start) / double(CLOCKS_PER_SEC);
 }
 
+void testThirdPhasePerformance() {
+
+    ofstream res("AnalysisResults/results3Phase.txt");
+
+    res << "map;time" << endl;
+
+    auto graph = readGraph("maps/GridGraphs/4x4/nodes.txt", "maps/GridGraphs/4x4/edges.txt");
+    double timeTaken = registerTime3Phase(graph,"deliveries/exemploCabaz.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
+    res << "4x4" << ";" << timeTaken << setprecision(8) << endl;
+
+    graph = readGraph("maps/GridGraphs/8x8/nodes.txt", "maps/GridGraphs/8x8/edges.txt");
+    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabaz.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
+    res << "8x8" << ";" << timeTaken << setprecision(8) << endl;
+
+    graph = readGraph("maps/GridGraphs/16x16/nodes.txt", "maps/GridGraphs/16x16/edges.txt");
+    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabaz.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
+    res << "16x16" << ";" << timeTaken << setprecision(8) << endl;
+
+    res.close();
+}
