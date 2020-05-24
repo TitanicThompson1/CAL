@@ -1,10 +1,11 @@
 //
 // Created by Ricardo Nunes on 19/05/2020.
 //
-
-#include <heldKarp.h>
-#include <thirdPhase.h>
 #include "complexityAnalysis.h"
+
+
+
+
 
 void testAStarPerfomance1() {
 
@@ -135,3 +136,48 @@ void testThirdPhasePerformance() {
 */
     res.close();
 }
+
+void testConnectivity(){
+    ofstream res("AnalysisResults/resultsConnectivity.txt");
+
+    res << "map;time" << endl;
+
+
+    auto graph = readGraph("maps/GridGraphs/8x8/nodes.txt", "maps/GridGraphs/8x8/edges.txt");
+
+    double timeTaken = registerTimeConnectivity(graph);
+
+    res << "8x8" << ";" << timeTaken << setprecision(8) << endl;
+
+
+    graph = readGraph("maps/GridGraphs/16x16/nodes.txt", "maps/GridGraphs/16x16/edges.txt");
+
+    timeTaken = registerTimeConnectivity(graph);
+
+    res << "16x16" << ";" << timeTaken << setprecision(8) << endl;
+
+    graph = readGraph("maps/PortugalMaps/Porto/porto_full_nodes_xy.txt", "maps/PortugalMaps/Porto/porto_full_edges.txt");
+
+    timeTaken = registerTimeConnectivity(graph);
+
+    res << "Porto" << ";" << timeTaken << setprecision(8) << endl;
+
+
+
+}
+
+double registerTimeConnectivity(Graph<int> &graph) {
+
+    clock_t start, end;
+
+    start = clock();
+
+    graph.dfsRemoveUnvisited(1);
+
+    end = clock();
+
+    return double(end - start) / double(CLOCKS_PER_SEC);
+}
+
+
+

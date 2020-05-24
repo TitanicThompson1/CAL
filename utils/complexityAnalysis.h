@@ -12,6 +12,8 @@
 #include <unistd.h>
 #include <iomanip>
 
+#include "heldKarp.h"
+#include "thirdPhase.h"
 #include "aStar.h"
 #include "Graphio.h"
 
@@ -28,5 +30,9 @@ void testHeldKarpPerformance();
 double registerTime3Phase(Graph<int> graph, const string &inputBaskets, const string &inputTrucks, const string &output);
 
 void testThirdPhasePerformance();
+
+void testConnectivity();
+
+double registerTimeConnectivity(Graph<int> &graph);
 
 #endif //CODE_COMPLEXITYANALYSIS_H

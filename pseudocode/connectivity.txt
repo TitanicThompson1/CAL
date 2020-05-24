@@ -1,0 +1,26 @@
+Vertice -> vértice de começo
+
+
+dfsVisit(Vertice):
+    SetVisited(Vertice);
+    For (unvisited neighbor vertices of Vertice):
+        dfsVisit(neighbor);
+
+
+
+/---------------------------------------------------------/
+
+idVertice -> id do vértice de começo
+Vertice -> vértice de começo
+
+dfsRemoveUnvisited(idVertice):
+
+    Vertice = InitializeAllVertices(idVertice);
+
+    dfsVisit(Vertice);
+
+    EraseAllUnvisitedVertices();
+
+    EraseAllEdgesAssociated();
+
+

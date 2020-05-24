@@ -591,8 +591,6 @@ template<class T>
 void Graph<T>::dfsRemoveUnvisited(T source) {
     //receber parametro de entrada, primeiro vertice (farm)
     Vertex<T> * srcVertex = initSingleSource(source);
-    for (Vertex<T> * v : vertexSet)
-        v->visited = false;
 
     dfsVisit(srcVertex);
 
