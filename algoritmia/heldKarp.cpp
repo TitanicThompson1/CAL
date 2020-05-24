@@ -12,6 +12,7 @@ void heldKarpAlgorithm(const FarmFresh2You &farm, Graph<int> graph, const string
     heldKarpCore(start, end, baskets, graph,resultFilename);
 }
 void heldKarpCore(int startVertex, int endVertex, vector<Basket> allBaskets, Graph<int> &graph, const string &resultFilename) {
+
     // Does HeldKarp Algorithm
     int cabaz, min_i = -1, min_cabaz;
     double dist, min_dist = -1;

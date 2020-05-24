@@ -14,11 +14,14 @@ FarmFresh2You setUpRoutine();
 
 int main(){
 
-    //FarmFresh2You farm = setUpRoutine();
-    testThirdPhasePerformance();
+    FarmFresh2You farm = setUpRoutine();
+    //testThirdPhasePerformance();
 
-    /*
     Graph<int> graph = readGraph();
+
+    graph.dfsRemoveUnvisited(farm.getFarm());
+
+    return 0;
 
     int currentOption = 0;
 
@@ -40,7 +43,7 @@ int main(){
                 currentOption = ThirdFaseMenu(farm, graph);
                 break;
         }
-    }*/
+    }
 
     return 0;
 }

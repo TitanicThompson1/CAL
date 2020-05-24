@@ -18,6 +18,7 @@ void thirdPhaseAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const str
     vector<Basket> baskets = readBasketsFromFile(filenameB);
 
     vector<Basket> basketsCopy = baskets;
+
     //Treat trucks
     vector<Truck> trucks = readTrucksFromFile(filenameT);
     double currentCapacity=0.0;
@@ -31,12 +32,12 @@ void thirdPhaseAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const str
                 currentCapacity += (*itB).getVolume();
                 (*it).addBasket(*itB);
                 itB = basketsCopy.erase(itB);
+                itB--;
             }
             itB++;
         }
         heldKarpCore(farm.getFarm(), farm.getGarage(), (it)->getToDeliver(), graph, resultFilename);
         currentCapacity = 0.0;
-        //graph.exportResultsToFile(resultFilename, farm.getFarm(), *.getDest());
     }
 
 
