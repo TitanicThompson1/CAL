@@ -30,6 +30,7 @@ void thirdPhaseAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const str
                 currentCapacity += (*itB).getVolume();
                 (*it).addBasket(*itB);
                 itB = baskets.erase(itB);
+                itB--;
             }
             itB++;
         }

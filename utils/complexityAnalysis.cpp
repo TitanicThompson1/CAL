@@ -108,7 +108,7 @@ double registerTime3Phase(Graph<int> graph, const string &inputBaskets, const st
 
     start = clock();
 //void thirdPhaseAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &filenameB,  const string &filenameT, const string &resultFilename);
-    thirdPhaseAlgorithm(FarmFresh2You(1,26839),graph, inputBaskets, inputTrucks, output);
+    thirdPhaseAlgorithm(FarmFresh2You(0,24),graph, inputBaskets, inputTrucks, output);
 
     end = clock();
 
