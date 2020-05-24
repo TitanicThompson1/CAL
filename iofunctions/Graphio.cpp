@@ -41,6 +41,7 @@ Graph<int> readGraph() {
         }
     }while(invalid);
 
+
     return graph;
 
 }
@@ -83,6 +84,7 @@ void getNodesFromFile(const string &nodesFilename, Graph<int> &graph) {
         y = stod(sY);
 
         graph.addVertex(id, x, y);
+
     }
 }
 
@@ -113,5 +115,8 @@ void getEdgesFromFile(const string &edgesFilename, Graph<int> &graph) {
         dest = stoi(sDest);
 
         graph.addEdge(src, dest, -1);
+
+        //For testing: comment otherwise
+        graph.addEdge(dest, src, -1);
     }
 }

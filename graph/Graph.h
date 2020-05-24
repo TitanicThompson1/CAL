@@ -593,13 +593,16 @@ void Graph<T>::dfsRemoveUnvisited(T source) {
     Vertex<T> * srcVertex = initSingleSource(source);
     for (Vertex<T> * v : vertexSet)
         v->visited = false;
+
     dfsVisit(srcVertex);
+
     for (auto it = vertexSet.begin();  it != vertexSet.end(); it++) {
         if(!(*it)->visited) {
             it = vertexSet.erase(it);
-            it-- ;
+            it--;
         }
     }
+
     for (auto it = vertexSet.begin();  it != vertexSet.end(); it++) {
         vector<Edge<T>> edges = (*it)->adj;
         for (auto itE = edges.begin(); itE != edges.end(); itE++) {
