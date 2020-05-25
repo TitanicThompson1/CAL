@@ -1,0 +1,29 @@
+
+
+farm -> Objeto FarmFresh2You que contem a quinta (idFarm) e a garagem (idGarage)
+graph -> Grafo
+filenameB -> nome do ficheiro de onde são lidos os cabazes
+filenameT -> nome do ficheiro de onde são lidos os camiões existentes na frota da empresa
+resultFilename -> nome do ficheiro para onde exporta o resultado
+
+thirdPhaseAlgorithm(farm, graph, filenameB, filenameT, resultFilename)
+    baskets = readBasketsFromFile(filenameB);
+    trucks = readTrucksFromFile(filenameT);
+    currentCapacity = 0;
+
+    for (truck of trucks):
+        maxCap = truck.getCap();
+        while (baskets != empty & currentCapacity < maxCap) {
+            if( maxCap > (currentCapacity + basket.getVolume())){
+                currentCapacity += basket.getVolume();
+                truck.addBasket(basket);
+                baskets.erase(basket);
+            }
+        }
+        heldKarp(farm, garage, truck.BasketsToDeliver, graph, resultFilename);
+        currentCapacity = 0;
+    }
+}
+
+
+

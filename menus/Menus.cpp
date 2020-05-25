@@ -126,7 +126,6 @@ int ThirdFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
 
     thirdPhaseAlgorithm(farm, graph, filenameBaskets, filenameTrucks, resFilename);
 
-    //testThirdPhasePerformance();
     newWindow();
 
     cout << "Algoritmo realizado com sucesso!" << endl

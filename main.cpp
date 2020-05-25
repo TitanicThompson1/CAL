@@ -15,14 +15,11 @@ FarmFresh2You setUpRoutine();
 int main(){
 
 
-
     FarmFresh2You farm = setUpRoutine();
-
 
     Graph<int> graph = readGraph();
 
     graph.dfsRemoveUnvisited(farm.getFarm());
-
 
     int currentOption = 0;
 

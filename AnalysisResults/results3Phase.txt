@@ -1,2 +1,2 @@
-map;time
-4x4;0.007
+vertice1:vertice2; time
+Mapa Porto;1.02
