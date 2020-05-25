@@ -583,19 +583,23 @@ void Graph<T>::exportResultsToFile(const string &filename, T src, T dest) {
 }
 
 /*
-1. Encontrar Vertice da quinta
-2. Ver apartir da quinta quias os vértices que vao ser visitados
-3. Apagar os que nao foram visitados
+Function that executes a Depth-First Search in order to find all vertexes that are strongly connected to the farm (source vertex)
+All unvisited vertexes are removed from the graph
 */
 template<class T>
 void Graph<T>::dfsRemoveUnvisited(T source) {
-    //receber parametro de entrada, primeiro vertice (farm)
+
+    // O(|V|)
     Vertex<T> * srcVertex = initSingleSource(source);
+
+    //O(|V|)
     for (Vertex<T> * v : vertexSet)
         v->visited = false;
 
+    //O(|E|)
     dfsVisit(srcVertex);
 
+    //O(|V|)
     for (auto it = vertexSet.begin();  it != vertexSet.end(); it++) {
         if(!(*it)->visited) {
             it = vertexSet.erase(it);
@@ -603,8 +607,11 @@ void Graph<T>::dfsRemoveUnvisited(T source) {
         }
     }
 
+    // Total: O(|V|*|E|)
+    //O(|V|)
     for (auto it = vertexSet.begin();  it != vertexSet.end(); it++) {
         vector<Edge<T>> edges = (*it)->adj;
+        //O(|E|)
         for (auto itE = edges.begin(); itE != edges.end(); itE++) {
             if (!((itE)->dest->visited)) {
                 edges.erase(itE);
@@ -619,11 +626,11 @@ void Graph<T>::dfsRemoveUnvisited(T source) {
 template <class T>
 void Graph<T>::dfsVisit(Vertex<T> *v) const {
     v->visited=true;
-    //res.push_back(v->info);
+
+    //O(|E|)
     for(Edge<T> e : v->adj){
         if(!e.dest->visited)
             dfsVisit(e.dest);
-            //dfsVisit(e.dest,res);
     }
 }
 

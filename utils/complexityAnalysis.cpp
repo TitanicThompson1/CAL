@@ -107,8 +107,13 @@ double registerTime3Phase(Graph<int> graph, const string &inputBaskets, const st
     clock_t start, end;
 
     start = clock();
-//void thirdPhaseAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const string &filenameB,  const string &filenameT, const string &resultFilename);
-    thirdPhaseAlgorithm(FarmFresh2You(0,24),graph, inputBaskets, inputTrucks, output);
+
+    //thirdPhaseAlgorithm(FarmFresh2You(0,0),graph, inputBaskets, inputTrucks, output);
+    //thirdPhaseAlgorithm(FarmFresh2You(90379359,90379359),graph, inputBaskets, inputTrucks, output);
+    //thirdPhaseAlgorithm(FarmFresh2You(90379359,281726622),graph, inputBaskets, inputTrucks, output);
+    //thirdPhaseAlgorithm(FarmFresh2You(0,24),graph, inputBaskets, inputTrucks, output);
+    //thirdPhaseAlgorithm(FarmFresh2You(0,80),graph, inputBaskets, inputTrucks, output);
+    //thirdPhaseAlgorithm(FarmFresh2You(0,255),graph, inputBaskets, inputTrucks, output);
 
     end = clock();
 
@@ -124,14 +129,35 @@ void testThirdPhasePerformance() {
     auto graph = readGraph("maps/GridGraphs/4x4/nodes.txt", "maps/GridGraphs/4x4/edges.txt");
     double timeTaken = registerTime3Phase(graph,"deliveries/exemploCabaz.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
     res << "4x4" << ";" << timeTaken << setprecision(8) << endl;
-/*
+
     graph = readGraph("maps/GridGraphs/8x8/nodes.txt", "maps/GridGraphs/8x8/edges.txt");
-    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabaz.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
+    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabaz.txt", "FarmFresh2You/trucks2.txt", "resultado3Fase.txt");
+    res << "8x8" << ";" << timeTaken << setprecision(8) << endl;
+
+    graph = readGraph("maps/GridGraphs/8x8/nodes.txt", "maps/GridGraphs/8x8/edges.txt");
+    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabazBig.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
     res << "8x8" << ";" << timeTaken << setprecision(8) << endl;
 
     graph = readGraph("maps/GridGraphs/16x16/nodes.txt", "maps/GridGraphs/16x16/edges.txt");
-    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabaz.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
+    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabaz.txt", "FarmFresh2You/trucks2.txt", "resultado3Fase.txt");
     res << "16x16" << ";" << timeTaken << setprecision(8) << endl;
-*/
+
+    graph = readGraph("maps/GridGraphs/16x16/nodes.txt", "maps/GridGraphs/16x16/edges.txt");
+    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabazBig.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
+    res << "16x16" << ";" << timeTaken << setprecision(8) << endl;
+
+    //res.precision(32);
+
+    //cout.precision(32);
+
+    res << "vertice1:vertice2; time" << endl;
+
+    graph = readGraph("maps/PortugalMaps/Porto/nodes_x_y_porto.txt", "maps/PortugalMaps/Porto/edges_porto.txt");
+
+    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabazBig.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
+
+    res << "Mapa Porto" << ";" << timeTaken << setprecision(8) << endl;
+
+
     res.close();
 }
