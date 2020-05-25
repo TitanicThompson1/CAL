@@ -9,6 +9,10 @@ vector<Truck> readTrucksFromFile(const string &filename) {
 
     ifstream infile(filename);
 
+    if(!infile.is_open())
+        throw FileNotFound(filename);
+
+
     double capacity;
     string type;
 

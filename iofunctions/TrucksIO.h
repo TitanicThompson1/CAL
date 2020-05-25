@@ -8,7 +8,9 @@
 #include <string>
 #include <vector>
 #include <fstream>
+
 #include "Truck.h"
+#include "FileNotFound.h"
 
 vector<Truck> readTrucksFromFile(const string &filename);
 

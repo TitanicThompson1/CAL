@@ -99,8 +99,22 @@ int SecondFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
     cout << "Introduza o nome do ficheiro que irá conter os resultados: ";
     cin >> resFilename;
 
-    heldKarpAlgorithm(farm, graph, filename, resFilename);
     newWindow();
+
+    try {
+        heldKarpAlgorithm(farm, graph, filename, resFilename);
+    }catch (FileNotFound f){
+        cout << "Não foi possivel encontrar o ficheiro " << f.getFilename() << "." << endl;
+        cout << "Introduza qualquer caracter para prosseguir" << endl;
+
+        cin >> filename;
+        return 0;
+    }catch (VerticeNotFound<int> v){
+        cout << "O vertice de id " << to_string(v.getInfo()) << "não existe." << endl;
+        cout << "Introduza qualquer caracter para prosseguir" << endl;
+        cin >> filename;
+        return 0;
+    }
 
     cout << "Algoritmo realizado com sucesso!" << endl
          << "Introduza qualquer caracter para prosseguir" << endl;
@@ -124,9 +138,22 @@ int ThirdFaseMenu(const FarmFresh2You &farm, Graph<int> &graph) {
     cout << "Introduza o nome do ficheiro que irá conter os resultados" << endl;
     cin >> resFilename;
 
-    thirdPhaseAlgorithm(farm, graph, filenameBaskets, filenameTrucks, resFilename);
-
     newWindow();
+
+    try {
+        thirdPhaseAlgorithm(farm, graph, filenameBaskets, filenameTrucks, resFilename);
+    }catch (FileNotFound f){
+        cout << "Não foi possivel encontrar o ficheiro " << f.getFilename() << "." << endl;
+        cout << "Introduza qualquer caracter para prosseguir" << endl;
+
+        cin >> any;
+        return 0;
+    }catch (VerticeNotFound<int> v){
+        cout << "O vertice de id " << to_string(v.getInfo()) << "não existe." << endl;
+        cout << "Introduza qualquer caracter para prosseguir" << endl;
+        cin >> any;
+        return 0;
+    }
 
     cout << "Algoritmo realizado com sucesso!" << endl
          << "Introduza qualquer caracter para prosseguir" << endl;

@@ -37,8 +37,20 @@ int VisualizeGraphMenu(Graph<int> &graph);
  */
 int FirstFaseMenu(const FarmFresh2You &farm, Graph<int> &graph);
 
+/**
+ * This menu applies the Help-Karp to solve fase 2
+ * @param farm farm the contains the id of the begining vertice, and the id of the destination vertice
+ * @param graph graph to perfom Help-Karp to
+ * @return next menu
+ */
 int SecondFaseMenu(const FarmFresh2You &farm, Graph<int> &graph);
 
+/**
+ * This menu applies the algorithm created by us to solve fase 3
+ * @param farm farm the contains the id of the begining vertice, and the id of the destination vertice
+ * @param graph graph to perfom our algorithm to
+ * @return next menu
+ */
 int ThirdFaseMenu(const FarmFresh2You &farm, Graph<int> &graph);
 
 /**

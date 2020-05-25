@@ -19,6 +19,10 @@
 
 using namespace std;
 
+//In this file, there are some functions that we used to measure time. However, they are not called in the final
+//code (for obvious reasons)
+
+
 void testAStarPerfomance1();
 
 void testAStarPerfomance2();
