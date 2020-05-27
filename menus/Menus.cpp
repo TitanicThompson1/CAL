@@ -9,7 +9,7 @@ int VisualizeGraphMenu(Graph<int> &graph) {
     newWindow();
 
     GraphViewer *gv = new GraphViewer(600, 600, false);
-    gv->createWindow(800, 800);
+    gv->createWindow(8000, 8000);
 
     gv->defineVertexColor("blue");
     gv->defineEdgeColor("black");
