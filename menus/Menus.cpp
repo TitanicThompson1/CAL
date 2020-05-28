@@ -27,12 +27,9 @@ int VisualizeGraphMenu(Graph<int> &graph) {
             gv->addEdge(idE++, edge.getOrig()->getInfo(), edge.getDest()->getInfo(), EdgeType::DIRECTED);
         }
     }
-
     //Setting the edge color to yellow
     gv->setEdgeColor(0, "yellow");
-
     gv->rearrange();
-
     int nextMenu;
     cout << "0 - Voltar" << endl;
     cin >> nextMenu;
