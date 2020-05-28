@@ -42,6 +42,7 @@ void thirdPhaseAlgorithm(const FarmFresh2You &farm, Graph<int> &graph, const str
             }
             itB++;
         }
+
         //Use Held-Karp algorithm to find the shortest path for this particular truck
         heldKarpCore(farm.getFarm(), farm.getGarage(), (it)->getToDeliver(), graph, resultFilename); //O(|V|*2^|V|)
         currentCapacity = 0.0;
