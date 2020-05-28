@@ -115,6 +115,6 @@ void getEdgesFromFile(const string &edgesFilename, Graph<int> &graph) {
         graph.addEdge(src, dest, -1);
 
         //For testing: comment otherwise
-        graph.addEdge(dest, src, -1);
+        //graph.addEdge(dest, src, -1);
     }
 }
