@@ -128,7 +128,7 @@ void testThirdPhasePerformance() {
     res << "map;time" << endl;
 
     auto graph = readGraph("maps/GridGraphs/4x4/nodes.txt", "maps/GridGraphs/4x4/edges.txt");
-    double timeTaken = registerTime3Phase(graph,"deliveries/exemploCabaz.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
+    double timeTaken = registerTime3Phase(graph,"deliveries/exemploCabaz.txt", "FarmFresh2You/testeTruckFase3.txt", "resultado3Fase.txt");
     res << "4x4" << ";" << timeTaken << setprecision(8) << endl;
 
     graph = readGraph("maps/GridGraphs/8x8/nodes.txt", "maps/GridGraphs/8x8/edges.txt");
@@ -136,7 +136,7 @@ void testThirdPhasePerformance() {
     res << "8x8" << ";" << timeTaken << setprecision(8) << endl;
 
     graph = readGraph("maps/GridGraphs/8x8/nodes.txt", "maps/GridGraphs/8x8/edges.txt");
-    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabazBig.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
+    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabazBig.txt", "FarmFresh2You/testeTruckFase3.txt", "resultado3Fase.txt");
     res << "8x8" << ";" << timeTaken << setprecision(8) << endl;
 
     graph = readGraph("maps/GridGraphs/16x16/nodes.txt", "maps/GridGraphs/16x16/edges.txt");
@@ -144,7 +144,7 @@ void testThirdPhasePerformance() {
     res << "16x16" << ";" << timeTaken << setprecision(8) << endl;
 
     graph = readGraph("maps/GridGraphs/16x16/nodes.txt", "maps/GridGraphs/16x16/edges.txt");
-    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabazBig.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
+    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabazBig.txt", "FarmFresh2You/testeTruckFase3.txt", "resultado3Fase.txt");
     res << "16x16" << ";" << timeTaken << setprecision(8) << endl;
 
     //res.precision(32);
@@ -155,7 +155,7 @@ void testThirdPhasePerformance() {
 
     graph = readGraph("maps/PortugalMaps/Porto/nodes_x_y_porto.txt", "maps/PortugalMaps/Porto/edges_porto.txt");
 
-    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabazBig.txt", "FarmFresh2You/trucks.txt", "resultado3Fase.txt");
+    timeTaken = registerTime3Phase(graph,"deliveries/exemploCabazBig.txt", "FarmFresh2You/testeTruckFase3.txt", "resultado3Fase.txt");
 
     res << "Mapa Porto" << ";" << timeTaken << setprecision(8) << endl;
 
