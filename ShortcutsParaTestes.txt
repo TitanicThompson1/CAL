@@ -6,11 +6,20 @@ maps/GridGraphs/16x16/edges.txt
 deliveries/testeCabaz1.txt
 resFase1.txt
 
+deliveries/testeCabazFase2.txt
+testeResultFase2.txt
 
 
+deliveries/testeCabazFase3.txt
 
+FarmFresh2You/testeTruckFase3.txt
 
+testeResultadoFase3.txt
 
 
 maps/PortugalMaps/Porto/porto_strong_nodes_xy.txt
 maps/PortugalMaps/Porto/porto_strong_edges.txt
+
+deliveries/testeCabazFase3Porto.txt
+FarmFresh2You/testeTruckFase3.txt
+testeResultadoFase3.txt

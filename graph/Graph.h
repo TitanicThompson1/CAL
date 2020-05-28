@@ -403,7 +403,7 @@ int Graph<T>::calculatePathsize(T src, T dest) {
     for(int i = 0; i < result.size() - 1; i++) {
         sum += euclidianDistance(findVertex(result.at(i)), findVertex(result.at(i+1)));
     }
-    cout << result.back() << endl;
+    //cout << result.back() << endl;
 
     return sum;
 }
