@@ -10,7 +10,7 @@ testeResultFase2.txt
 
 Teste para o Mapa Porto
 
-farm.txt
+testeFarmFase2Porto.txt
 maps/PortugalMaps/Porto/nodes_x_y_porto.txt
 maps/PortugalMaps/Porto/edges_porto.txt
 deliveries/testeCabazFase2Porto.txt
